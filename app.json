@@ -1,30 +1,57 @@
 {
-  "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "expo": {
+        "name": "Total Home",
+        "slug": "TotalHome",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#f2f8fd"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": false
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "plugins": [
+            [
+                "expo-font",
+                {
+                    "fonts": [
+                        "./assets/font/Poppins-Black.ttf",
+                        "./assets/font/Poppins-BlackItalic.ttf",
+                        "./assets/font/Poppins-Bold.ttf",
+                        "./assets/font/Poppins-BoldItalic.ttf",
+                        "./assets/font/Poppins-ExtraBold.ttf",
+                        "./assets/font/Poppins-ExtraBoldItalic.ttf",
+                        "./assets/font/Poppins-ExtraLight.ttf",
+                        "./assets/font/Poppins-ExtraLightItalic.ttf",
+                        "./assets/font/Poppins-Italic.ttf",
+                        "./assets/font/Poppins-Light.ttf",
+                        "./assets/font/Poppins-LightItalic.ttf",
+                        "./assets/font/Poppins-Medium.ttf",
+                        "./assets/font/Poppins-MediumItalic.ttf",
+                        "./assets/font/Poppins-Regular.ttf",
+                        "./assets/font/Poppins-SemiBold.ttf",
+                        "./assets/font/Poppins-SemiBoldItalic.ttf",
+                        "./assets/font/Poppins-Thin.ttf",
+                        "./assets/font/Poppins-ThinItalic.ttf"
+                    ]
+                }
+            ]
+        ]
     }
-  }
 }
