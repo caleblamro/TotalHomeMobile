@@ -1,12 +1,15 @@
+import { PostgrestError, Session } from "@supabase/supabase-js";
+import { supabase } from "./supabase/supabase";
+
 // Enums for AccountType and ServiceType
-enum AccountType {
+export enum AccountType {
     OWNER = 'OWNER',
     PROVIDER = 'PROVIDER',
 }
 
 export enum ServiceType {
     CLEANING = 'CLEANING',
-    LAWN_CARE = 'LAWN_CARE',
+    LANDSCAPING = 'LANDSCAPING',
     PEST_CONTROL = 'PEST_CONTROL',
     POOL_CARE = 'POOL_CARE',
 }
@@ -35,15 +38,88 @@ interface BaseUser {
 }
 
 // Extended interfaces for OWNER and PROVIDER types
-interface OwnerUser extends BaseUser {
+export interface OwnerUser extends BaseUser {
     accountType: AccountType.OWNER;
-    activeServices: string[];
     interestedIn: ServiceType[];
 }
 
-interface ProviderUser extends BaseUser {
+export interface ProviderUser extends BaseUser {
     accountType: AccountType.PROVIDER;
     activeServices: string[]; // list of Service.id
+}
+export async function getCurrentUserInformation(session: any): Promise<OwnerUser | ProviderUser | null> {
+    if (!session) {
+        console.log("Auth Error: Session not defined... cannot proceed with request");
+        return null;
+    }
+    const { data: accountData, error: accountDataError } = await supabase
+        .from("user_info")
+        .select("*")
+        .eq("id", session?.user?.id);
+    if (accountDataError || !accountData || accountData.length !== 1) {
+        console.log("API Error: in getUserInformation");
+        return null;
+    }
+    const { username, type } = accountData[0];
+    if (username) {
+        if (type === "OWNER") {
+            return await getOwnerInformation(username, session);
+        } else {
+            return await getProviderInformation(username, session);
+        }
+    }
+    return null;
+}
+
+async function getOwnerInformation(username: string, session: Session): Promise<OwnerUser | null> {
+    if (!session?.user.id) {
+        console.log("Auth Error: Session not defined... cannot proceed with request");
+        return null;
+    }
+    const { data: userData, error: userDataError } = await supabase
+        .from("owner_info")
+        .select("*")
+        .eq("id", session?.user?.id);
+    if (userDataError || !userData || userData.length !== 1) {
+        console.log("API Error: in getOwnerInformation");
+        return null;
+    }
+    const res = userData[0];
+    const interestedServices: ServiceType[] = res.interested_in ? res.interested_in.map((val) => ServiceType[val]) : [];
+    const tempUserInfo: OwnerUser = {
+        accountType: AccountType.OWNER,
+        interestedIn: interestedServices,
+        id: res.id,
+        firstName: res.first_name || "",
+        lastName: res.last_name || "",
+        username: username
+    }
+    return tempUserInfo;
+}
+
+async function getProviderInformation(username: string, session: Session): Promise<ProviderUser | null> {
+    if (!session?.user.id) {
+        console.log("Auth Error: Session not defined... cannot proceed with request");
+        return null;
+    }
+    const { data: userData, error: userDataError } = await supabase
+        .from("servicer_info")
+        .select("*")
+        .eq("id", session?.user?.id);
+    if (userDataError || !userData || userData.length !== 1) {
+        console.log("API Error: in getProviderInformation");
+        return null;
+    }
+    const res = userData[0];
+    const tempUserInfo: ProviderUser = {
+        accountType: AccountType.PROVIDER,
+        id: res.id,
+        activeServices: [], // Assuming services is an array of service IDs
+        firstName: "",
+        lastName: "",
+        username: username
+    }
+    return tempUserInfo;
 }
 
 export const fetchUsers = (): Promise<Array<OwnerUser | ProviderUser>> => {
@@ -89,7 +165,7 @@ export const fetchServices = (): Promise<Service[]> => {
             recurring: true,
             recurringFrequency: "1 / Mo",
             needQuote: true,
-            type: ServiceType.LAWN_CARE,
+            type: ServiceType.LANDSCAPING,
             rating: 3,
             price: 0, // Price needs a quote
             providedBy: 'AZLandScapers',

@@ -1,28 +1,44 @@
 import { Text, View } from 'react-native';
 import { MotiView, ScrollView } from 'moti';
-import { FadeInFromBottom, FadeInFromLeft } from '../../components/animation/Animations';
-import { FillScreen, FillWidthAndCenter, FlexRow, TitleStyles } from '../styles/Styles';
+import { FadeInFromBottom } from '../../components/animation/Animations';
+import { FillScreen, FillWidthAndCenter, FlexRow, IconButtonStyle, TitleStyles } from '../styles/Styles';
 import { useTheme } from '../hooks/Hooks';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from './ScreenStack';
 import { FontSizes, Units } from '../styles/Constants';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useIsFocused } from '@react-navigation/native';
 import CardContainer from '../../components/cards/CardContainer';
 import ModalController from '../../components/modal/ModalController';
 import Constants from 'expo-constants';
 import React from 'react';
 import { getSections } from './SettingsSection';
 import BaseScreen from './BaseScreen';
+import { Ionicons } from '@expo/vector-icons';
+import Button, { ButtonType } from '../../components/button/Button';
+import { supabase } from '../api/supabase/supabase';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Settings">;
-export default function Settings({ navigation }: Props) {
+export default function Settings({ navigation, route }: Props) {
+    const { session } = route.params;
     const theme = useTheme();
     const sections = getSections(theme);
 
+    const logout = async () => {
+        const { error } = await supabase.auth.signOut();
+        if(error) {
+            console.log("API Error: Couldn't sign out");
+        }
+        navigation.navigate("Auth", { session: null });
+    }
+    
+    
+    const rightActionButton = (
+        <Button onPress={logout} type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0, backgroundColor: "transparent" }} accessibilityLabel={'Press to log out'} >
+            <Ionicons name="log-out" size={Units.LARGE} color={theme.palette.primary.on} />
+        </Button>
+    )
 
     return (
-        <BaseScreen title="Settings" style={{padding: Units.EXTRA_LARGE, paddingTop: 0, paddingBottom: 0}}>
+        <BaseScreen title="Settings" style={{padding: Units.EXTRA_LARGE, paddingTop: 0, paddingBottom: 0}} rightAction={rightActionButton}>
             {sections.map((section, index) => (
                 <React.Fragment key={`settingsSection${index}`}>
                     <MotiView key={`settingsSectionTitle${index}`} {...FadeInFromBottom(index + 1)} style={{ marginTop: Units.EXTRA_LARGE, marginBottom: Units.SMALL + 4 }}>

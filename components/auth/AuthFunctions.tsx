@@ -1,3 +1,6 @@
+import { Session } from "@supabase/supabase-js";
+import { supabase } from "../../global/api/supabase/supabase";
+
 // Utility function to validate password strength
 const isPasswordStrong = (password: string): boolean => {
     const minLength = 8;
@@ -14,7 +17,6 @@ const isPasswordStrong = (password: string): boolean => {
         hasSpecial.test(password)
     );
 };
-
 // Simulate a login function
 export const login = (username: string, password: string): Promise<boolean> => {
     return new Promise<boolean>((resolve, reject) => {

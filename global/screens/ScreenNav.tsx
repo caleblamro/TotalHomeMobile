@@ -9,8 +9,13 @@ import { useTheme } from "../hooks/Hooks";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { RootStackParamList } from "./ScreenStack";
+import { Session } from "@supabase/supabase-js";
 
-export default function ScreenNav() {
+interface ScreenNavProps {
+    session: Session;
+}
+
+export default function ScreenNav({ session } : ScreenNavProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const theme = useTheme();
     const [currentScreen, setCurrentScreen] = useState(0);
@@ -42,7 +47,7 @@ export default function ScreenNav() {
 
     const navigateTo = (obj: MenuInterface, index: number) => {
         setCurrentScreen(index);
-        navigation.navigate(obj.name, {});
+        navigation.navigate(obj.name, { session: session });
     }
 
     

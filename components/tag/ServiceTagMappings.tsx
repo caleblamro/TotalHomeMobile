@@ -13,7 +13,7 @@ export default function ServiceTagMapping({ type }: ServiceTagMappingProps) {
             return(
                 <Tag color="#2b8ad9" name="Cleaning" icon={<MaterialIcons name="cleaning-services" size={Units.MEDIUM} color="#2b8ad9" />} />
             );
-        case ServiceType.LAWN_CARE:
+        case ServiceType.LANDSCAPING:
             return(
                 <Tag color="#7cb24f" name="Landscaping" icon={<MaterialCommunityIcons name="mower" size={Units.MEDIUM} color="#7cb24f" />} />
             );

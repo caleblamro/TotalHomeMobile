@@ -7,10 +7,13 @@ import Button, { ButtonType } from '../../components/button/Button';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from './BaseScreen';
 import { TextInput } from 'react-native';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { supabase } from '../api/supabase/supabase';
+import { AccountType, OwnerUser, ProviderUser, ServiceType, getCurrentUserInformation } from '../api/Api';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
-export default function Home({ navigation }: Props) {
+export default function Home({ navigation, route }: Props) {
+    const { session } = route.params;
     const theme = useTheme();
 
     const rightActionButton = (
