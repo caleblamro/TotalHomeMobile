@@ -11,14 +11,14 @@ interface InputItemProps extends AntdInputItemProps {
   ref?: React.RefObject<InputItem>;
 }
 
-interface Props {
+export interface InputFieldProps {
     animationProps?: MotiProps<ViewStyle>;
     style?: ViewStyle;
     inputProps?: InputItemProps;
     icon?: React.ReactNode;
 }
 
-export default function Input({ animationProps, style, inputProps, icon }: Props) {
+export default function Input({ animationProps, style, inputProps, icon }: InputFieldProps) {
     const theme = useTheme();
 
     return (

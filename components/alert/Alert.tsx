@@ -23,14 +23,21 @@ export interface AlertProps {
 
 const Alert: React.FC<AlertProps> = ({ message, type, show }) => {
     const theme = useTheme();
+    const [close, setClose] = useState(false);
     const insets = useSafeAreaInsets();
     const onClose = () => {
-        console.log("Close alert");
+        setClose(true);
     }
+
+    useEffect(() => {
+        if(show) {
+            setClose(false);
+        }
+    }, [show]);
 
     return (
         <AnimatePresence>
-           {show && <MotiView from={{ opacity: 0, translateY: -20 }} animate={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: -20 }} exitTransition={{type: "spring"}} transition={{ type: "spring" }} style={{ position: "absolute", top: insets.top + Units.MEDIUM, left: 0, width: "100%", padding: Units.EXTRA_LARGE, paddingTop: 0, paddingBottom: 0}}>
+           {show && !close && <MotiView from={{ opacity: 0, translateY: -20 }} animate={{ opacity: 1, translateY: 0 }} exit={{ opacity: 0, translateY: -20 }} exitTransition={{type: "spring"}} transition={{ type: "spring" }} style={{ position: "absolute", top: insets.top + Units.MEDIUM, left: 0, width: "100%", padding: Units.EXTRA_LARGE, paddingTop: 0, paddingBottom: 0}}>
                 <View style={{...FlexRow, ...DropShadow, backgroundColor: theme.palette.primary.main, padding: Units.MEDIUM, borderRadius: Units.MEDIUM, justifyContent: "space-between"}}>
                     <View style={{...FlexRow, gap: Units.SMALL, alignItems: "center"}}>
                         {type === AlertType.INFO && <Ionicons name="information-circle" size={Units.EXTRA_LARGE} color={theme.palette.alert.info} />}

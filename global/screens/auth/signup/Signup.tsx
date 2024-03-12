@@ -76,8 +76,8 @@ export default function Signup({ navigation }: Props) {
                 { selectedAccountType !== null && <Step style={{marginTop: Units.LARGE}} title={'Basic Info'} subTitle={'Enter basic account information'} number={2} animationProps={animationProps} /> }
             </AnimatePresence>
             <AnimatePresence>
-                { isOwnerSelected && <OwnerForm animationProps={{...animationProps, transition: { delay: 100 }}} /> }
-                { isProviderSelected && <ProviderForm animationProps={{...animationProps, transition: { delay: 100 }}} /> }
+                { isOwnerSelected && <OwnerForm /> }
+                { isProviderSelected && <ProviderForm /> }
             </AnimatePresence>
             <View style={{width: "100%", minHeight: 450}}></View>
         </BaseScreen>
