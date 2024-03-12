@@ -1,17 +1,17 @@
-import { IconButtonStyle, TextInputStyle } from '../styles/Styles';
-import { useTheme } from '../hooks/Hooks';
+import { IconButtonStyle, TextInputStyle } from '../../../styles/Styles';
+import { useTheme } from '../../../hooks/Hooks';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from './ScreenStack';
-import { Units } from '../styles/Constants';
-import Button, { ButtonType } from '../../components/button/Button';
+import { RootStackParamList } from '../../util/ScreenStack';
+import { Units } from '../../../styles/Constants';
+import Button, { ButtonType } from '../../../../components/button/Button';
 import { Ionicons } from '@expo/vector-icons';
-import BaseScreen from './BaseScreen';
+import BaseScreen from '../../util/BaseScreen';
 import { MotiView } from 'moti';
-import { FadeInFromBottom } from '../../components/animation/Animations';
+import { FadeInFromBottom } from '../../../../components/animation/Animations';
 import { useState, useRef, useEffect } from 'react';
 import { View, TextInput, ScrollView } from 'react-native';
-import { fetchServices, Service } from '../api/Api';
-import ServiceCard from '../../components/cards/ServiceCard';
+import { fetchServices, Service } from '../../../api/Api';
+import ServiceCard from '../../../../components/cards/ServiceCard';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Search">;
 export default function Search({ navigation }: Props) {

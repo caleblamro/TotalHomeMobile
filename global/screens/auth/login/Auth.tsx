@@ -1,17 +1,19 @@
 import { AnimatePresence, MotiView } from "moti";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { View, Text, TextInput, Keyboard, TouchableWithoutFeedback, AppState } from "react-native";
-import { useTheme } from "../hooks/Hooks";
-import { FadeInFromBottom } from "../../components/animation/Animations";
-import { BodyStyles, FillScreen, FillWidthAndCenter, FlexColumnFullWidth, TextInputStyle, TitleStyles } from "../styles/Styles";
-import { Units } from "../styles/Constants";
-import Logo from "../theme/Logo";
-import Button, { ButtonType } from "../../components/button/Button";
+import { useAlert, useTheme } from "../../../hooks/Hooks";
+import { FadeInFromBottom } from "../../../../components/animation/Animations";
+import { AntdInputWrapperStyle, AntdTextInputStyle, BodyStyles, FillScreen, FillWidthAndCenter, FlexColumnFullWidth, NoPadding, TextInputStyle, TitleStyles } from "../../../styles/Styles";
+import { Units } from "../../../styles/Constants";
+import Logo from "../../../theme/Logo";
+import Button, { ButtonType } from "../../../../components/button/Button";
 import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from "./ScreenStack";
-import { supabase } from "../api/supabase/supabase";
+import { RootStackParamList } from "../../util/ScreenStack";
+import { supabase } from "../../../api/supabase/supabase";
 import { useIsFocused } from "@react-navigation/native";
+import { InputItem } from "@ant-design/react-native";
+import Input from "../../../../components/input/Input";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "Auth">;
@@ -23,24 +25,26 @@ export default function Auth({ navigation, route }: Props) {
     const [keyboardVisible, setKeyboardVisible] = useState(false);
     const [loginLoading, setLoginLoading] = useState(false);
     const containerRef = useRef(null);
-    const emailInputRef = useRef<TextInput>(null);
-    const passwordInputRef = useRef<TextInput>(null);
+    const emailInputRef = useRef<InputItem>(null);
+    const passwordInputRef = useRef<InputItem>(null);
     const theme = useTheme();
     const isFocused = useIsFocused();
+    const alert = useAlert();
 
     const signUp = () => {
-        navigation.navigate("Signup", { username: email, password: password, session: session });    
+        navigation.navigate("Signup", { username: email, password: password, session: session });
     }
 
     async function signInWithEmail() {
-        setLoginLoading(true)
+        setLoginLoading(true);
         const { error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         });
         if (error) {
+            alert?.error("Incorrect email or password");
             console.log("incorrect email or password");
-        }else{
+        } else {
             navigation.navigate("Home", { userId: "1", session: session });
         }
         setLoginLoading(false)
@@ -48,12 +52,6 @@ export default function Auth({ navigation, route }: Props) {
 
     const dismissKeyboard = () => {
         Keyboard.dismiss();
-    }
-
-    const onNext = () => {
-        if (passwordInputRef.current) {
-            passwordInputRef.current.focus();
-        }
     }
 
 
@@ -91,37 +89,45 @@ export default function Auth({ navigation, route }: Props) {
                             Login
                         </Text>
                     </MotiView>
-                    <MotiView {...FadeInFromBottom(2)} style={{ width: "100%", marginTop: Units.MEDIUM }}>
-                        <TextInput
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            autoComplete="email"
-                            ref={emailInputRef}
-                            returnKeyType="next"
-                            returnKeyLabel="Next"
-                            clearButtonMode="while-editing"
-                            value={email}
-                            onChangeText={setEmail}
-                            style={{ ...TextInputStyle, color: theme.palette.text.default, borderColor: theme.palette.secondary.main, height: 48 }}
-                            placeholder="Email"
-                            onSubmitEditing={onNext}
-                        />
-                    </MotiView>
-                    <MotiView {...FadeInFromBottom(3)} style={{ width: "100%", marginTop: Units.SMALL }}>
-                        <TextInput
-                            ref={passwordInputRef}
-                            autoCapitalize="none"
-                            returnKeyType="done"
-                            returnKeyLabel="Submit"
-                            clearButtonMode="while-editing"
-                            value={password}
-                            onChangeText={setPassword}
-                            secureTextEntry={true}
-                            style={{ ...TextInputStyle, color: theme.palette.text.default, borderColor: theme.palette.secondary.main, height: 48 }}
-                            placeholder="Password"
-                            onSubmitEditing={signInWithEmail}
-                        />
-                    </MotiView>
+                    <Input
+                        animationProps={{ ...FadeInFromBottom(2) }}
+                        style={{ width: "100%" }}
+                        icon={<Ionicons name="mail" color={theme.palette.primary.on} size={Units.LARGE} />}
+                        inputProps={{
+                            autoCapitalize: "none",
+                            autoCorrect: true,
+                            type: "email-address",
+                            autoComplete: "email",
+                            returnKeyType: "next",
+                            returnKeyLabel: "Next",
+                            value: email,
+                            onChangeText: setEmail,
+                            accessibilityLabel: "Enter email",
+                            placeholder: "Email",
+                            ref: emailInputRef,
+                            onSubmitEditing: () => passwordInputRef.current?.focus()
+                        }}
+                    />
+                    <Input
+                        animationProps={{ ...FadeInFromBottom(2) }}
+                        style={{ width: "100%" }}
+                        icon={<Ionicons name="lock-closed" color={theme.palette.primary.on} size={Units.LARGE} />}
+                        inputProps={{
+                            autoCapitalize: "none",
+                            autoCorrect: true,
+                            type: "password",
+                            autoComplete: "password",
+                            returnKeyType: "done",
+                            returnKeyLabel: "Submit",
+                            value: password,
+                            onChangeText: setPassword,
+                            accessibilityLabel: "Enter password",
+                            placeholder: "Password",
+                            secureTextEntry: true,
+                            ref: passwordInputRef,
+                            onSubmitEditing: signInWithEmail
+                        }}
+                    />
                     <MotiView {...FadeInFromBottom(3)} style={{ ...FillWidthAndCenter, flexDirection: "row-reverse", justifyContent: "space-between", marginTop: Units.MEDIUM }}>
                         <Button onPress={signInWithEmail} accessibilityLabel="Click to log in" type={ButtonType.FILLED}>
                             <Ionicons name="enter-sharp" size={Units.LARGE} color={theme.palette.primary.main} />

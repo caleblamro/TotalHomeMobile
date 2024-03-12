@@ -15,6 +15,7 @@ interface ButtonProps {
     children: React.ReactNode; // Using the children prop
     onPress: () => void;
     accessibilityLabel: string;
+    
 }
 
 export default function Button({ style, type, children, onPress, accessibilityLabel }: ButtonProps) {

@@ -65,8 +65,8 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
             <View style={{ ...FlexRow, marginTop: Units.MEDIUM, gap: Units.SMALL }}>
                 <ServiceTagMapping type={service.type} />
                 <Tag
-                    icon={<MaterialCommunityIcons name={service.negotiable ? "handshake" : "cancel"} size={Units.MEDIUM} color={service.negotiable ? "#7cb24f" : theme.palette.alert.error} />}
-                    color={service.negotiable ? "#7cb24f" : theme.palette.alert.error}
+                    icon={<MaterialCommunityIcons name={service.negotiable ? "handshake" : "cancel"} size={Units.MEDIUM} color={service.negotiable ? theme.palette.alert.success : theme.palette.alert.error} />}
+                    color={service.negotiable ? theme.palette.alert.success : theme.palette.alert.error}
                     name={service.negotiable ? "Negotiable" : "Non-Negotiable"}
                 />
             </View>

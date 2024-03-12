@@ -1,11 +1,11 @@
 import { useIsFocused } from "@react-navigation/native";
-import { useTheme } from "../hooks/Hooks";
-import { FillScreen, FillWidthAndCenter, FlexRow, TitleStyles } from "../styles/Styles";
+import { useTheme } from "../../hooks/Hooks";
+import { FillScreen, FillWidthAndCenter, FlexRow, TitleStyles } from "../../styles/Styles";
 import { ScrollView, MotiView } from "moti";
 import { View, Text, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { FadeInFromLeft, FadeInFromRight } from "../../components/animation/Animations";
-import { FontSizes, Units } from "../styles/Constants";
+import { FadeInFromLeft, FadeInFromRight } from "../../../components/animation/Animations";
+import { FontSizes, Units } from "../../styles/Constants";
 
 interface BaseScreenProps {
     title: string;

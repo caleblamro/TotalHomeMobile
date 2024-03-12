@@ -1,5 +1,6 @@
 import { StyleProp, TextStyle, ViewStyle } from "react-native"
 import { FontSizes, Units } from "./Constants"
+import { InputItemStyle } from "@ant-design/react-native/lib/input-item/style"
 
 export const NoPadding: ViewStyle = {
     paddingTop: 0,
@@ -85,17 +86,16 @@ export const BaseButtonStyle: ViewStyle = {
     flexDirection: "row",
     alignItems: "center",
     gap: Units.MEDIUM,
-    padding: Units.SMALL,
-    paddingLeft: Units.LARGE,
-    paddingRight: Units.LARGE,
+    padding: Units.LARGE,
+    paddingVertical: Units.SMALL + 2,
     borderRadius: Units.MEDIUM,
-    height: Units.LARGE * 2,
     ...DropShadow
 }
 export const IconButtonStyle: ViewStyle = {
     ...BaseButtonStyle,
     justifyContent: "center",
     width: Units.LARGE * 2,
+    height: Units.LARGE * 2
 }
 
 // NAVIGATION STYLES
@@ -136,4 +136,33 @@ export const BaseCardStyle: ViewStyle = {
         width: 0,
         height: 8
     }
+}
+
+// ANTD INPUT STYLES
+
+export const AntdTextInputStyle: Partial<InputItemStyle> = {
+    container: {
+        flex: 1,
+        height: 48,
+        marginLeft: 0,
+        marginRight: 0,
+        marginTop: 0,
+        marginBottom: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        borderWidth: 0
+    },
+}
+
+export const AntdInputWrapperStyle: ViewStyle = {
+    marginTop: Units.MEDIUM,
+    borderWidth: 1,
+    gap: Units.MEDIUM,
+    minHeight: Units.EXTRA_LARGE + Units.MEDIUM,
+    height: "auto",
+    borderRadius: Units.MEDIUM,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingHorizontal: Units.MEDIUM,
 }

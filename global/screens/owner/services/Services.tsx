@@ -1,11 +1,11 @@
-import { IconButtonStyle } from '../styles/Styles';
-import { useTheme } from '../hooks/Hooks';
+import { IconButtonStyle } from '../../../styles/Styles';
+import { useTheme } from '../../../hooks/Hooks';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from './ScreenStack';
-import { Units } from '../styles/Constants';
-import Button, { ButtonType } from '../../components/button/Button';
+import { RootStackParamList } from '../../util/ScreenStack';
+import { Units } from '../../../styles/Constants';
+import Button, { ButtonType } from '../../../../components/button/Button';
 import { Ionicons } from '@expo/vector-icons';
-import BaseScreen from './BaseScreen';
+import BaseScreen from '../../util/BaseScreen';
 
 type Props = NativeStackScreenProps<RootStackParamList, "Services">;
 export default function Services({ navigation }: Props) {

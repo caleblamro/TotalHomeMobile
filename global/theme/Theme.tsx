@@ -67,10 +67,10 @@ export const tokens = (mode: ThemeMode) => ({
             on: Colors.L3
         },
         alert: {
-            success: "#357c38", // Light Green
+            success: "#4b7f4e", // Light Green
             warning: "#ee8e00", // Light Orange
             error: "#a72d25", // Light Red
-            info: "#2b8ad9", // Light Blue
+            info: "#3f4c6a", // Light Blue
             special: "#e8d534", // Light Yellow
             highlight: "#85be55",
         }

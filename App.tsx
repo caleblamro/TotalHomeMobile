@@ -1,7 +1,7 @@
 import React from "react";
-import ScreenStack from "./global/screens/ScreenStack";
+import ScreenStack from "./global/screens/util/ScreenStack";
 import { useFonts } from 'expo-font';
-import Loading from "./global/screens/Loading";
+import Loading from "./global/screens/util/Loading";
 import { StatusBar } from "expo-status-bar";
 
 export default function App() {

@@ -15,11 +15,11 @@ export default function ServiceTagMapping({ type }: ServiceTagMappingProps) {
             );
         case ServiceType.LANDSCAPING:
             return(
-                <Tag color="#7cb24f" name="Landscaping" icon={<MaterialCommunityIcons name="mower" size={Units.MEDIUM} color="#7cb24f" />} />
+                <Tag color="#236814" name="Landscaping" icon={<MaterialCommunityIcons name="mower" size={Units.MEDIUM} color="#236814" />} />
             );
         case ServiceType.POOL_CARE:
             return(
-                <Tag color="#ee8e00" name="Pool Care" icon={<MaterialCommunityIcons name="pool" size={Units.MEDIUM} color="#ee8e00" />} />
+                <Tag color="#b67a2f" name="Pool Care" icon={<MaterialCommunityIcons name="pool" size={Units.MEDIUM} color="#b67a2f" />} />
             );
         case ServiceType.PEST_CONTROL:
             return(

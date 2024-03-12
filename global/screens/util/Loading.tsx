@@ -1,6 +1,6 @@
 import { MotiView } from "moti";
-import { FadeInFromBottom } from "../../components/animation/Animations";
-import { FillAndCenter } from "../styles/Styles";
+import { FadeInFromBottom } from "../../../components/animation/Animations";
+import { FillAndCenter } from "../../styles/Styles";
 import LottieView from "lottie-react-native";
 
 export default function Loading() {
@@ -12,7 +12,7 @@ export default function Loading() {
                   width: 200,
                   height: 200
                 }}
-                source={require('../animation/loading.json')}
+                source={require('../../animation/loading.json')}
             />
         </MotiView>
     );

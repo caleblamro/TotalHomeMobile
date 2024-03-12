@@ -1,6 +1,6 @@
-import { Theme } from "../theme/Theme";
+import { Theme } from "../../../theme/Theme";
 import { Text } from "react-native";
-import { Units } from '../styles/Constants';
+import { Units } from '../../../styles/Constants';
 import { Ionicons } from '@expo/vector-icons';
 
 interface SettingsItem {

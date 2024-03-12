@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { MotiView } from "moti";
-import { FadeInFromBottom } from "../../components/animation/Animations";
-import { FlexRow, NavigationStyle } from "../styles/Styles";
+import { FadeInFromBottom } from "../../../components/animation/Animations";
+import { FlexRow, NavigationStyle } from "../../styles/Styles";
 import { Ionicons } from '@expo/vector-icons';
-import { Units } from "../styles/Constants";
+import { Units } from "../../styles/Constants";
 import { Dimensions, Pressable } from "react-native";
-import { useTheme } from "../hooks/Hooks";
+import { useTheme } from "../../hooks/Hooks";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
 import { RootStackParamList } from "./ScreenStack";
