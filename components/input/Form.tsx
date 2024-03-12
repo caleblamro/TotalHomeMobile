@@ -3,6 +3,7 @@ import { MotiView } from 'moti';
 import Input, { InputFieldProps } from './Input'; // Assuming this is your customized Input component
 import { useTheme } from '../../global/hooks/Hooks';
 import { FadeInFromBottom } from '../animation/Animations';
+import { InputItem } from '@ant-design/react-native';
 
 
 export interface FormField {
@@ -18,13 +19,17 @@ interface FormProps {
     onSubmit: (data: { [key: string]: any }) => void; // Callback function for form submission
 }
 
+interface FormData {
+    [key: string]: React.RefObject<InputItem>
+}
+
 export default function Form({ fields, onSubmit, animationDelay = 0 }: FormProps) {
     const theme = useTheme();
-    const [formState, setFormState] = useState<{ [key: string]: any }>({});
+    const [formState, setFormState] = useState<FormData>({});
     const [allFieldsValid, setAllFieldsValid] = useState<boolean>(false);
 
     // Create refs for inputs dynamically
-    const inputRefs = fields.reduce((acc, field) => {
+    const inputRefs:FormData = fields.reduce((acc, field) => {
         acc[field.key] = useRef(null);
         return acc;
     }, {});
