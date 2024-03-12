@@ -56,7 +56,7 @@ export default function Signup({ navigation }: Props) {
                 <SelectButton
                     selectedColor={theme.palette.primary.on}
                     defaultColor={theme.palette.primary.main}
-                    label={'Homeowner'}
+                    label={'Home Owner'}
                     iconName={'home'}
                     isSelected={isOwnerSelected}
                     onPress={() => setSelectedAccountType(AccountType.OWNER)}
