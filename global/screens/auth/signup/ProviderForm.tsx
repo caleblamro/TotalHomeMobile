@@ -19,15 +19,16 @@ interface FormItem {
 
 interface FormProps {
     style?: ViewStyle;
+    onFormValidated: ([key]: any) => void;
 }
 
-export default function ProviderForm({ }: FormProps) {
+export default function ProviderForm({ onFormValidated }: FormProps) {
     const theme = useTheme();
 
 
     return (
         <MotiView>
-            <Form fields={providerFormData(theme)} onSubmit={(obj) => console.log("Submitted", obj)} />
+            <Form fields={providerFormData(theme)} onSubmit={(obj) => onFormValidated(obj)} />
         </MotiView>
     );
 }

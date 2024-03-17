@@ -135,3 +135,38 @@ export const providerFormData = (theme: Theme): FormField[] => {
         }
     ]
 }
+
+export const passwordFormData = (theme: Theme): FormField[] => {
+    return [
+        {
+            key: "password",
+            props: {
+                icon: <Ionicons name="lock-closed" color={theme.palette.primary.on} size={Units.LARGE} />,
+                inputProps: {
+                    autoCapitalize: "words",
+                    autoCorrect: false,
+                    type: "text",
+                    returnKeyType: "next",
+                    returnKeyLabel: "Next",
+                    accessibilityLabel: "Enter password",
+                    placeholder: "Enter password",
+                }
+            }
+        },
+        {
+            key: "confirmPassword",
+            props: {
+                icon: <Ionicons name="shield-checkmark" color={theme.palette.primary.on} size={Units.LARGE} />,
+                inputProps: {
+                    autoCapitalize: "none",
+                    autoCorrect: false,
+                    type: "text",
+                    returnKeyType: "done",
+                    returnKeyLabel: "Submit",
+                    accessibilityLabel: "Confirm password",
+                    placeholder: "Confirm password"
+                }
+            }
+        }
+    ]
+}

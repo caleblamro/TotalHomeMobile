@@ -1,3 +1,6 @@
+import { MotiProps } from "moti";
+import { ViewStyle } from "react-native";
+
 const DELAY = 100;
 
 export const FadeInFromBottom = (number: number) => {
@@ -8,6 +11,22 @@ export const FadeInFromBottom = (number: number) => {
         exit: { opacity: 0, translateY: 20 }
     }
 }
+
+export const FadeInOutFromBottom: MotiProps<ViewStyle> = {
+    from: {
+        opacity: 0,
+        translateY: 20,
+    },
+    animate: {
+        opacity: 1,
+        translateY: 0,
+    },
+    exit: {
+        opacity: 0,
+        translateY: 20,
+    }
+}
+
 export const FadeInFromTop = (number: number) => {
     return {
         from: { opacity: 0, translateY: -20 },

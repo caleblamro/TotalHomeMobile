@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle, ViewStyle } from "react-native"
+import { Dimensions, StyleProp, TextStyle, ViewStyle } from "react-native"
 import { FontSizes, Units } from "./Constants"
 import { InputItemStyle } from "@ant-design/react-native/lib/input-item/style"
 
@@ -165,4 +165,14 @@ export const AntdInputWrapperStyle: ViewStyle = {
     alignItems: "center",
     justifyContent: "flex-start",
     paddingHorizontal: Units.MEDIUM,
+}
+
+// MODAL STYLES
+export const ModalStyle: ViewStyle = {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height,
+    zIndex: 4
 }

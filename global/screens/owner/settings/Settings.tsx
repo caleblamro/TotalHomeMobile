@@ -46,7 +46,7 @@ export default function Settings({ navigation, route }: Props) {
                     </MotiView>
                     <CardContainer animationProps={{ ...FadeInFromBottom(2 + index) }} style={{ display: "flex", flexDirection: "column", gap: Units.SMALL }}>
                         {section.items.map((item) => (
-                            <ModalController key={`settingsOption${item.title}`} title={item.title} icon={item.icon}>
+                            <ModalController key={`settingsOption${item.title}`} title={item.title} subtitle={section.title} icon={item.icon}>
                                 {item.modalContent}
                             </ModalController>
                         ))}
