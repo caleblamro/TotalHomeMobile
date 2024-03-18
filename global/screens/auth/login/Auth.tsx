@@ -2,8 +2,8 @@ import { MotiView } from "moti";
 import { useEffect, useRef, useState } from "react";
 import { View, Text, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { useAlert, useTheme } from "../../../hooks/Hooks";
-import { FadeInFromBottom } from "../../../../components/animation/Animations";
-import { BodyStyles, FillScreen, FillWidthAndCenter, FlexColumnFullWidth, TitleStyles } from "../../../styles/Styles";
+import { fadeInFromBottom } from "../../../../components/animation/Animations";
+import { textBodyStyles, fillScreen, fillWidthAndCenter, flexColumnFullWidth, textTitleStyles } from "../../../styles/Styles";
 import { Units } from "../../../styles/Constants";
 import Logo from "../../../theme/Logo";
 import Button, { ButtonType } from "../../../../components/button/Button";
@@ -89,18 +89,18 @@ export default function Auth({ navigation, route }: Props) {
                 animate={{ translateY: keyboardVisible ? -130 : 0 }}
                 ref={containerRef}
                 transition={{ duration: 200, type: "timing" }}
-                style={{ ...FillScreen, display: "flex", justifyContent: "center", backgroundColor: theme.palette.primary.main }}>
-                <View style={{ ...FlexColumnFullWidth, padding: Units.EXTRA_LARGE + Units.MEDIUM, paddingBottom: 0, paddingTop: 0 }}>
-                    <MotiView {...FadeInFromBottom(0)} style={{ ...FillWidthAndCenter }}>
+                style={{ ...fillScreen, display: "flex", justifyContent: "center", backgroundColor: theme.palette.primary.main }}>
+                <View style={{ ...flexColumnFullWidth, padding: Units.EXTRA_LARGE + Units.MEDIUM, paddingBottom: 0, paddingTop: 0 }}>
+                    <MotiView {...fadeInFromBottom(0)} style={{ ...fillWidthAndCenter }}>
                         <Logo />
                     </MotiView>
-                    <MotiView {...FadeInFromBottom(1)}>
-                        <Text style={{ ...TitleStyles, color: theme.palette.text.default }}>
+                    <MotiView {...fadeInFromBottom(1)}>
+                        <Text style={{ ...textTitleStyles, color: theme.palette.text.default }}>
                             Login
                         </Text>
                     </MotiView>
                     <Input
-                        animationProps={{ ...FadeInFromBottom(2) }}
+                        animationProps={{ ...fadeInFromBottom(2) }}
                         style={{ width: "100%" }}
                         icon={<Ionicons name="mail" color={theme.palette.primary.on} size={Units.LARGE} />}
                         inputProps={{
@@ -119,7 +119,7 @@ export default function Auth({ navigation, route }: Props) {
                         }}
                     />
                     <Input
-                        animationProps={{ ...FadeInFromBottom(2) }}
+                        animationProps={{ ...fadeInFromBottom(2) }}
                         style={{ width: "100%" }}
                         icon={<Ionicons name="lock-closed" color={theme.palette.primary.on} size={Units.LARGE} />}
                         inputProps={{
@@ -138,22 +138,22 @@ export default function Auth({ navigation, route }: Props) {
                             onSubmitEditing: signInWithEmail
                         }}
                     />
-                    <MotiView {...FadeInFromBottom(3)} style={{ ...FillWidthAndCenter, flexDirection: "row-reverse", justifyContent: "space-between", marginTop: Units.MEDIUM }}>
+                    <MotiView {...fadeInFromBottom(3)} style={{ ...fillWidthAndCenter, flexDirection: "row-reverse", justifyContent: "space-between", marginTop: Units.MEDIUM }}>
                         <Button onPress={signInWithEmail} accessibilityLabel="Click to log in" type={ButtonType.FILLED}>
                             <Ionicons name="enter-sharp" size={Units.LARGE} color={theme.palette.primary.main} />
-                            <Text style={{ ...BodyStyles, color: theme.palette.primary.main, fontFamily: "Poppins-Medium" }}>
+                            <Text style={{ ...textBodyStyles, color: theme.palette.primary.main, fontFamily: "Poppins-Medium" }}>
                                 Login
                             </Text>
                         </Button>
                         <Button onPress={signUp} accessibilityLabel="Click to sign up" type={ButtonType.OUTLINED} style={{ borderColor: theme.palette.primary.on }}>
                             <Ionicons name="person-add-sharp" size={Units.LARGE} color={theme.palette.primary.on} />
-                            <Text style={{ ...BodyStyles, color: theme.palette.primary.on, fontFamily: "Poppins-Medium" }}>
+                            <Text style={{ ...textBodyStyles, color: theme.palette.primary.on, fontFamily: "Poppins-Medium" }}>
                                 Sign Up
                             </Text>
                         </Button>
                     </MotiView>
-                    <MotiView {...FadeInFromBottom(4)} style={{ ...FillWidthAndCenter, marginTop: Units.LARGE }}>
-                        <Text style={{ ...BodyStyles, color: theme.palette.primary.on, fontFamily: "Poppins-Medium" }}>
+                    <MotiView {...fadeInFromBottom(4)} style={{ ...fillWidthAndCenter, marginTop: Units.LARGE }}>
+                        <Text style={{ ...textBodyStyles, color: theme.palette.primary.on, fontFamily: "Poppins-Medium" }}>
                             Forgot Password?
                         </Text>
                     </MotiView>

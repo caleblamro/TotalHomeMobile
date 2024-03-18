@@ -3,7 +3,7 @@ import { ViewStyle } from "react-native";
 
 const DELAY = 100;
 
-export const FadeInFromBottom = (number: number) => {
+export const fadeInFromBottom = (number: number) => {
     return {
         from: { opacity: 0, translateY: 20 },
         animate: { opacity: 1, translateY: 0 },
@@ -12,7 +12,7 @@ export const FadeInFromBottom = (number: number) => {
     }
 }
 
-export const FadeInOutFromBottom: MotiProps<ViewStyle> = {
+export const fadeInOutFromBottom: MotiProps<ViewStyle> = {
     from: {
         opacity: 0,
         translateY: 20,
@@ -27,7 +27,7 @@ export const FadeInOutFromBottom: MotiProps<ViewStyle> = {
     }
 }
 
-export const FadeInFromTop = (number: number) => {
+export const fadeInFromTop = (number: number) => {
     return {
         from: { opacity: 0, translateY: -20 },
         animate: { opacity: 1, translateY: 0 },
@@ -36,7 +36,7 @@ export const FadeInFromTop = (number: number) => {
     }
 }
 
-export const FadeInFromLeft = (number: number) => {
+export const fadeInFromLeft = (number: number) => {
     return {
         from: { opacity: 0, translateX: -20 },
         animate: { opacity: 1, translateX: 0 },
@@ -44,7 +44,7 @@ export const FadeInFromLeft = (number: number) => {
     }
 }
 
-export const FadeInFromRight = (number: number) => {
+export const fadeInFromRight = (number: number) => {
     return {
         from: { opacity: 0, translateX: 20 },
         animate: { opacity: 1, translateX: 0 },

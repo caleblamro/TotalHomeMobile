@@ -1,4 +1,4 @@
-import { IconButtonStyle } from '../../../styles/Styles';
+import { iconButtonStyle } from '../../../styles/Styles';
 import { useTheme } from '../../../hooks/Hooks';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../util/ScreenStack';
@@ -12,7 +12,7 @@ export default function OwnerServices({ navigation }: Props) {
     const theme = useTheme();
     
     const rightActionButton = (
-        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.error("Not implemented!")} accessibilityLabel={'Press to open payment settings'} >
+        <Button type={ButtonType.FILLED} style={{ ...iconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.error("Not implemented!")} accessibilityLabel={'Press to open payment settings'} >
             <Ionicons name="card" size={Units.LARGE} color={theme.palette.primary.main} />
         </Button>
     )

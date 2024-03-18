@@ -1,11 +1,11 @@
 import { MotiView } from "moti";
-import { FadeInFromBottom } from "../../../components/animation/Animations";
-import { FillAndCenter } from "../../styles/Styles";
+import { fadeInFromBottom } from "../../../components/animation/Animations";
+import { fillAndCenter } from "../../styles/Styles";
 import LottieView from "lottie-react-native";
 
 export default function Loading() {
     return(
-        <MotiView { ...FadeInFromBottom } style={{ ...FillAndCenter }}>
+        <MotiView { ...fadeInFromBottom } style={{ ...fillAndCenter }}>
             <LottieView
                 autoPlay
                 style={{

@@ -1,4 +1,4 @@
-import { IconButtonStyle, TextInputStyle } from '../../../styles/Styles';
+import { iconButtonStyle, textInputStyle } from '../../../styles/Styles';
 import { useTheme } from '../../../hooks/Hooks';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../util/ScreenStack';
@@ -7,7 +7,7 @@ import Button, { ButtonType } from '../../../../components/button/Button';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from '../../util/BaseScreen';
 import { MotiView } from 'moti';
-import { FadeInFromBottom } from '../../../../components/animation/Animations';
+import { fadeInFromBottom } from '../../../../components/animation/Animations';
 import { useState, useRef, useEffect } from 'react';
 import { View, TextInput } from 'react-native';
 import { fetchServices, Service } from '../../../api/Api';
@@ -26,7 +26,7 @@ export default function OwnerSearch({ navigation }: Props) {
     }
 
     const rightActionButton = (
-        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.error("Not implemented!")} accessibilityLabel={'Press to configure search filters'} >
+        <Button type={ButtonType.FILLED} style={{ ...iconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.error("Not implemented!")} accessibilityLabel={'Press to configure search filters'} >
             <Ionicons name="filter-circle" size={Units.LARGE} color={theme.palette.primary.main} />
         </Button>
     )
@@ -43,7 +43,7 @@ export default function OwnerSearch({ navigation }: Props) {
 
     return (
         <BaseScreen scrollEnabled={true} title="Search" subtitle="Available Services" rightAction={rightActionButton} style={{paddingHorizontal: Units.EXTRA_LARGE}}>
-            <MotiView {...FadeInFromBottom(2)} style={{ width: "100%", marginTop: Units.MEDIUM }}>
+            <MotiView {...fadeInFromBottom(2)} style={{ width: "100%", marginTop: Units.MEDIUM }}>
                 <TextInput
                     autoCapitalize="sentences"
                     autoCorrect={true}
@@ -53,16 +53,16 @@ export default function OwnerSearch({ navigation }: Props) {
                     clearButtonMode="while-editing"
                     value={searchTextData}
                     onChangeText={setSearchTextData}
-                    style={{ ...TextInputStyle, color: theme.palette.text.default, borderColor: theme.palette.secondary.main, height: 48, width: "100%", marginTop: Units.SMALL }}
+                    style={{ ...textInputStyle, color: theme.palette.text.default, borderColor: theme.palette.secondary.main, height: 48, width: "100%", marginTop: Units.SMALL }}
                     placeholder="Search"
                     onSubmitEditing={submitSearch}
                 />
             </MotiView>
-            <MotiView {...FadeInFromBottom(3)} style={{ width: "100%", marginTop: Units.MEDIUM }}>
+            <MotiView {...fadeInFromBottom(3)} style={{ width: "100%", marginTop: Units.MEDIUM }}>
                 {/* FILTERS CONTAINER */}
             </MotiView>
             {searchResults.map((service, index) => (
-                <ServiceCard service={service} key={`serviceCard${index}`} animationProps={{...FadeInFromBottom(index + 4)}} />
+                <ServiceCard service={service} key={`serviceCard${index}`} animationProps={{...fadeInFromBottom(index + 4)}} />
             ))}
             <View style={{ marginTop: 190 }} />
         </BaseScreen>

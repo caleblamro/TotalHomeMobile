@@ -2,47 +2,47 @@ import { Dimensions, TextStyle, ViewStyle } from "react-native"
 import { FontSizes, Units } from "./Constants"
 import { InputItemStyle } from "@ant-design/react-native/lib/input-item/style"
 
-export const NoPadding: ViewStyle = {
+export const noPadding: ViewStyle = {
     paddingTop: 0,
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0
 }
 
-export const FlexColumnFullWidth: ViewStyle = {
+export const flexColumnFullWidth: ViewStyle = {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
     width: "100%",
     gap: Units.SMALL
 }
-export const FillAndCenter: ViewStyle = {
+export const fillAndCenter: ViewStyle = {
     flex: 1,
     alignItems: 'center',
     padding: Units.MEDIUM,
     justifyContent: 'center',
 }
-export const FillWidthAndCenter: ViewStyle = {
+export const fillWidthAndCenter: ViewStyle = {
     display: "flex",
     width: "100%",
     alignItems: 'center',
     justifyContent: 'center',
 }
-export const FillScreen: ViewStyle = {
+export const fillScreen: ViewStyle = {
     width: "100%",
     height: "100%"
 }
-export const FlexRow: ViewStyle = {
+export const flexRow: ViewStyle = {
     display: "flex",
     flexDirection: "row",
 }
-export const FlexColumn: ViewStyle = {
+export const flexColumn: ViewStyle = {
     display: "flex",
     flexDirection: "column",
 }
 
 //EFFECTS
-export const DropShadow: ViewStyle = {
+export const dropShadow: ViewStyle = {
     shadowOffset: {
         width: 0, // Usually, a direct downward shadow doesn't need horizontal offset
         height: 4, // A moderate vertical offset for a subtle look
@@ -54,34 +54,34 @@ export const DropShadow: ViewStyle = {
 };
 // TEXT STYLES
 
-export const TextShadow: TextStyle = {
+export const textShadow: TextStyle = {
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 1,
 };
 
-export const TitleStyles: TextStyle = {
+export const textTitleStyles: TextStyle = {
     fontFamily: "Poppins-Bold",
     fontSize: FontSizes.TITLE
 }
 
-export const BodyStyles: TextStyle = {
+export const textBodyStyles: TextStyle = {
     fontFamily: "Poppins-Regular",
     fontSize: FontSizes.MEDIUM,
 }
 
 // INPUT STYLES
-export const TextInputStyle: TextStyle | ViewStyle = {
+export const textInputStyle: TextStyle | ViewStyle = {
     borderWidth: 1,
     borderRadius: Units.MEDIUM,
     padding: Units.MEDIUM,
     paddingTop: Units.SMALL,
     paddingBottom: Units.SMALL,
-    ...BodyStyles
+    ...textBodyStyles
 }
 
 // BUTTON STYLES
-export const BaseButtonStyle: ViewStyle = {
+export const baseButtonStyle: ViewStyle = {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -89,17 +89,17 @@ export const BaseButtonStyle: ViewStyle = {
     padding: Units.LARGE,
     paddingVertical: Units.SMALL + 2,
     borderRadius: Units.MEDIUM,
-    ...DropShadow
+    ...dropShadow
 }
-export const IconButtonStyle: ViewStyle = {
-    ...BaseButtonStyle,
+export const iconButtonStyle: ViewStyle = {
+    ...baseButtonStyle,
     justifyContent: "center",
     width: Units.LARGE * 2,
     height: Units.LARGE * 2
 }
 
 // NAVIGATION STYLES
-export const NavigationStyle: ViewStyle = {
+export const navigationStyle: ViewStyle = {
     position: "absolute",
     borderTopLeftRadius: Units.LARGE,
     borderTopRightRadius: Units.LARGE,
@@ -113,7 +113,7 @@ export const NavigationStyle: ViewStyle = {
     justifyContent: "space-evenly",
     bottom: 0,
     left: 0,
-    ...DropShadow,
+    ...dropShadow,
     shadowOffset: {
         width: 0,
         height: -4
@@ -123,7 +123,7 @@ export const NavigationStyle: ViewStyle = {
 }
 
 // CARD STYLES
-export const BaseCardStyle: ViewStyle = {
+export const baseCardStyle: ViewStyle = {
     width: "100%",
     marginTop: Units.SMALL,
     padding: Units.SMALL,
@@ -131,7 +131,7 @@ export const BaseCardStyle: ViewStyle = {
     paddingTop: Units.MEDIUM,
     borderRadius: Units.LARGE,
     backgroundColor: "#ffffff",
-    ...DropShadow,
+    ...dropShadow,
     shadowOffset: {
         width: 0,
         height: 8
@@ -140,7 +140,7 @@ export const BaseCardStyle: ViewStyle = {
 
 // ANTD INPUT STYLES
 
-export const AntdTextInputStyle: Partial<InputItemStyle> = {
+export const antdTextInputStyle: Partial<InputItemStyle> = {
     container: {
         flex: 1,
         height: 48,
@@ -154,7 +154,7 @@ export const AntdTextInputStyle: Partial<InputItemStyle> = {
     },
 }
 
-export const AntdInputWrapperStyle: ViewStyle = {
+export const antdInputWrapperStyle: ViewStyle = {
     marginTop: Units.MEDIUM,
     borderWidth: 1,
     gap: Units.MEDIUM,
@@ -168,7 +168,7 @@ export const AntdInputWrapperStyle: ViewStyle = {
 }
 
 // MODAL STYLES
-export const ModalStyle: ViewStyle = {
+export const modalStyle: ViewStyle = {
     position: "absolute",
     left: 0,
     top: 0,

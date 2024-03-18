@@ -1,10 +1,10 @@
 import { useIsFocused } from "@react-navigation/native";
 import { useTheme } from "../../hooks/Hooks";
-import { FillScreen, FillWidthAndCenter, FlexRow, TitleStyles } from "../../styles/Styles";
+import { fillScreen, fillWidthAndCenter, flexRow, textTitleStyles } from "../../styles/Styles";
 import { ScrollView, MotiView } from "moti";
 import { View, Text, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { FadeInFromLeft, FadeInFromRight } from "../../../components/animation/Animations";
+import { fadeInFromLeft, fadeInFromRight } from "../../../components/animation/Animations";
 import { FontSizes, Units } from "../../styles/Constants";
 
 interface BaseScreenProps {
@@ -24,15 +24,15 @@ export default function BaseScreen({ title, subtitle, rightAction, scrollEnabled
 
 
     return(
-        <ScrollView scrollEnabled={scrollEnabled} showsVerticalScrollIndicator={false} key={isFocused ? 'focused' : 'unfocused'} style={{ ...FillScreen, backgroundColor: theme.palette.primary.main }}>
-            <View style={{ ...FillScreen, ...insets }}>
+        <ScrollView scrollEnabled={scrollEnabled} showsVerticalScrollIndicator={false} key={isFocused ? 'focused' : 'unfocused'} style={{ ...fillScreen, backgroundColor: theme.palette.primary.main }}>
+            <View style={{ ...fillScreen, ...insets }}>
                 <View style={{ width: "100%", padding: Units.EXTRA_LARGE, paddingTop: Units.EXTRA_LARGE, paddingBottom: 0 }}>
-                    <MotiView style={{ ...FillWidthAndCenter, ...FlexRow, justifyContent: "space-between" }}>
-                        <MotiView {...FadeInFromLeft(0)}>
-                            <Text style={{...TitleStyles, fontSize: FontSizes.EXTRA_LARGE, color: theme.palette.primary.on}}>{title}</Text>
-                            {subtitle && <Text style={{...TitleStyles, fontSize: FontSizes.MEDIUM, color: theme.palette.tertiary.main }}>{subtitle}</Text>}
+                    <MotiView style={{ ...fillWidthAndCenter, ...flexRow, justifyContent: "space-between" }}>
+                        <MotiView {...fadeInFromLeft(0)}>
+                            <Text style={{...textTitleStyles, fontSize: FontSizes.EXTRA_LARGE, color: theme.palette.primary.on}}>{title}</Text>
+                            {subtitle && <Text style={{...textTitleStyles, fontSize: FontSizes.MEDIUM, color: theme.palette.tertiary.main }}>{subtitle}</Text>}
                         </MotiView>
-                        { rightAction && <MotiView {...FadeInFromRight(0)}>
+                        { rightAction && <MotiView {...fadeInFromRight(0)}>
                             { rightAction }
                         </MotiView> }
                     </MotiView>

@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { BodyStyles, FlexRow } from "../../global/styles/Styles";
+import { textBodyStyles, flexRow } from "../../global/styles/Styles";
 import { FontSizes, Units } from "../../global/styles/Constants";
 
 interface TagProps {
@@ -11,7 +11,7 @@ interface TagProps {
 export default function Tag({name, icon, color}: TagProps) {
     return(
         <View style={{
-            ...FlexRow,
+            ...flexRow,
             height: Units.EXTRA_LARGE,
             alignItems: "center",
             gap: Units.SMALL,
@@ -21,7 +21,7 @@ export default function Tag({name, icon, color}: TagProps) {
             borderRadius: Units.SMALL
         }}>
             {icon}
-            <Text style={{...BodyStyles, fontSize: FontSizes.SMALL, color: color}}>{name}</Text>
+            <Text style={{...textBodyStyles, fontSize: FontSizes.SMALL, color: color}}>{name}</Text>
         </View>
     );
 }

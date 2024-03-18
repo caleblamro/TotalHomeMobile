@@ -1,6 +1,6 @@
 import { MotiProps, MotiView } from "moti";
 import { ViewStyle } from "react-native";
-import { BaseCardStyle } from "../../global/styles/Styles";
+import { baseCardStyle } from "../../global/styles/Styles";
 
 export interface CardContainerProps {
     animationProps?: MotiProps<ViewStyle>;
@@ -11,7 +11,7 @@ export interface CardContainerProps {
 export default function CardContainer({ animationProps, style, children }: CardContainerProps) {
 
     return(
-        <MotiView { ...animationProps } style={{ ...BaseCardStyle, ...style }}>
+        <MotiView { ...animationProps } style={{ ...baseCardStyle, ...style }}>
             { children }
         </MotiView>
     );

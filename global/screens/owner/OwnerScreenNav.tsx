@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { MotiView } from "moti";
-import { FadeInFromBottom } from "../../../components/animation/Animations";
-import { FlexRow, NavigationStyle } from "../../styles/Styles";
+import { fadeInFromBottom } from "../../../components/animation/Animations";
+import { flexRow, navigationStyle } from "../../styles/Styles";
 import { Ionicons } from '@expo/vector-icons';
 import { Units } from "../../styles/Constants";
 import { Dimensions, Pressable } from "react-native";
@@ -55,10 +55,10 @@ export default function OwnerScreenNav({ session } : ScreenNavProps) {
     const iconWidth = Units.LARGE; // Assuming this is the width of the icon
 
     return(
-        <MotiView { ...FadeInFromBottom(0) } style={{ ...NavigationStyle, backgroundColor: theme.palette.secondary.on }}>
+        <MotiView { ...fadeInFromBottom(0) } style={{ ...navigationStyle, backgroundColor: theme.palette.secondary.on }}>
             {menuRoutes.map((obj, index) => {
                 return(
-                    <Pressable accessibilityLabel={`Press to navigate to ${obj.name} screen`} style={{width: Units.LARGE * 2, height: Units.LARGE * 2, ...FlexRow, alignItems: "center", justifyContent: "center"}} key={`menuButton${index}`} onPress={() => navigateTo(obj, index)}>
+                    <Pressable accessibilityLabel={`Press to navigate to ${obj.name} screen`} style={{width: Units.LARGE * 2, height: Units.LARGE * 2, ...flexRow, alignItems: "center", justifyContent: "center"}} key={`menuButton${index}`} onPress={() => navigateTo(obj, index)}>
                         <MotiView>
                             {obj.icon}
                         </MotiView>

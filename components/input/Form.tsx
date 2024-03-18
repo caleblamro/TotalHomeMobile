@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { MotiView } from 'moti';
 import Input, { InputFieldProps } from './Input'; // Assuming this is your customized Input component
 import { useTheme } from '../../global/hooks/Hooks';
-import { FadeInFromBottom } from '../animation/Animations';
+import { fadeInFromBottom } from '../animation/Animations';
 import { InputItem } from '@ant-design/react-native';
 
 
@@ -59,7 +59,7 @@ export default function Form({ fields, onSubmit, animationDelay = 0 }: FormProps
             {fields.map((field, index) => (
                 <MotiView key={field.key} style={{ ...field.props.style, width: field.halfWidth ? "49%" : "100%" }}>
                     <Input
-                        animationProps={{ ...FadeInFromBottom(index + animationDelay) }}
+                        animationProps={{ ...fadeInFromBottom(index + animationDelay) }}
                         icon={field.props.icon}
                         inputProps={{
                             ...field.props.inputProps,

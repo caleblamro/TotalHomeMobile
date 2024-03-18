@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { ViewStyle } from 'react-native';
-import { BaseButtonStyle } from '../../global/styles/Styles';
+import { baseButtonStyle } from '../../global/styles/Styles';
 import { useTheme } from '../../global/hooks/Hooks';
 import { MotiPressable } from 'moti/interactions';
 
@@ -36,7 +36,7 @@ export default function Button({ style, type, children, onPress, accessibilityLa
                     }
                 },
                 []
-            )} accessibilityLabel={accessibilityLabel} onPress={onPress} style={[BaseButtonStyle, typeStyle, style]}>
+            )} accessibilityLabel={accessibilityLabel} onPress={onPress} style={[baseButtonStyle, typeStyle, style]}>
             {children}
         </MotiPressable>
     );

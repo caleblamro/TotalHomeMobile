@@ -2,7 +2,7 @@ import React from 'react';
 import { MotiProps, MotiView } from "moti";
 import { ViewStyle, View } from "react-native";
 import { useTheme } from "../../global/hooks/Hooks";
-import { AntdInputWrapperStyle, AntdTextInputStyle } from "../../global/styles/Styles";
+import { antdInputWrapperStyle, antdTextInputStyle } from "../../global/styles/Styles";
 import { InputItem } from "@ant-design/react-native";
 import { InputItemProps as AntdInputItemProps } from "@ant-design/react-native/lib/input-item";
 
@@ -21,13 +21,13 @@ export default function Input({ animationProps, style, inputProps, icon }: Input
     const theme = useTheme();
 
     return (
-        <MotiView {...animationProps} style={{ borderColor: theme.palette.tertiary.main, ...AntdInputWrapperStyle, ...style }}>
+        <MotiView {...animationProps} style={{ borderColor: theme.palette.tertiary.main, ...antdInputWrapperStyle, ...style }}>
             {icon}
             <View style={{flex: 1}}>
                 <InputItem
                     {...inputProps}
                     clearButtonMode="while-editing"
-                    styles={{ ...AntdTextInputStyle, input: { color: theme.palette.primary.on } }}
+                    styles={{ ...antdTextInputStyle, input: { color: theme.palette.primary.on } }}
                     placeholderTextColor={theme.palette.tertiary.on}
                     last
                 />

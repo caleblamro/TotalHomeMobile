@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import { MotiView, AnimatePresence } from 'moti';
-import { FadeInFromBottom } from '../../../../components/animation/Animations';
-import { FillWidthAndCenter, IconButtonStyle } from '../../../styles/Styles';
+import { fadeInFromBottom } from '../../../../components/animation/Animations';
+import { fillWidthAndCenter, iconButtonStyle } from '../../../styles/Styles';
 import { useTheme } from '../../../hooks/Hooks';
 import { RootStackParamList } from '../../util/ScreenStack';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -27,7 +27,7 @@ export default function Signup({ navigation }: Props) {
     const [accountData, setAccountData] = useState([]);
 
     const rightActionButton = (
-        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => navigation.navigate("Auth", { session: null })} accessibilityLabel={'Press to return to login'} >
+        <Button type={ButtonType.FILLED} style={{ ...iconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => navigation.navigate("Auth", { session: null })} accessibilityLabel={'Press to return to login'} >
             <Ionicons name="arrow-back-circle" size={Units.LARGE} color={theme.palette.primary.main} />
         </Button>
     );
@@ -65,8 +65,8 @@ export default function Signup({ navigation }: Props) {
 
     return (
         <BaseScreen title='Sign Up' subtitle='Create an Account' rightAction={rightActionButton} style={{ paddingHorizontal: Units.EXTRA_LARGE, paddingTop: Units.EXTRA_LARGE }}>
-            <Step animationProps={{ ...FadeInFromBottom(1) }} number={1} title="Account Type" subTitle="Select account type" />
-            <MotiView {...FadeInFromBottom(2)} style={{ ...FillWidthAndCenter, justifyContent: "space-between", marginTop: Units.MEDIUM, gap: Units.MEDIUM }}>
+            <Step animationProps={{ ...fadeInFromBottom(1) }} number={1} title="Account Type" subTitle="Select account type" />
+            <MotiView {...fadeInFromBottom(2)} style={{ ...fillWidthAndCenter, justifyContent: "space-between", marginTop: Units.MEDIUM, gap: Units.MEDIUM }}>
                 <SelectButton
                     selectedColor={theme.palette.primary.on}
                     defaultColor={theme.palette.primary.main}
@@ -87,14 +87,14 @@ export default function Signup({ navigation }: Props) {
                 />
             </MotiView>
             <AnimatePresence>
-                { selectedAccountType !== null && <Step style={{marginTop: Units.LARGE}} title={'Basic Info'} subTitle={'Enter basic account information'} number={2} animationProps={FadeInFromBottom(0)} /> }
+                { selectedAccountType !== null && <Step style={{marginTop: Units.LARGE}} title={'Basic Info'} subTitle={'Enter basic account information'} number={2} animationProps={fadeInFromBottom(0)} /> }
             </AnimatePresence>
             <AnimatePresence>
                 { isOwnerSelected && <OwnerForm onFormValidated={onOwnerFormValidated} /> }
                 { isProviderSelected && <ProviderForm onFormValidated={onProviderFormValidated} /> }
             </AnimatePresence>
             <AnimatePresence>
-                { accountTypeDataValid && <Step style={{marginTop: Units.LARGE}} title={'Enter Password'} subTitle={'Choose your password'} number={3} animationProps={FadeInFromBottom(0)} /> }
+                { accountTypeDataValid && <Step style={{marginTop: Units.LARGE}} title={'Enter Password'} subTitle={'Choose your password'} number={3} animationProps={fadeInFromBottom(0)} /> }
             </AnimatePresence>
             <AnimatePresence>
                 { accountTypeDataValid && <PasswordForm onFormValidated={onFinish} /> }

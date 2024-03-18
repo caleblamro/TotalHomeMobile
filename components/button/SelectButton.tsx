@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Units } from '../../global/styles/Constants';
 import { useTheme } from '../../global/hooks/Hooks';
 import { MotiText, MotiView, useAnimationState } from 'moti';
-import { BaseButtonStyle, BodyStyles } from '../../global/styles/Styles';
+import { baseButtonStyle, textBodyStyles } from '../../global/styles/Styles';
 
 interface SelectButtonProps {
     label: string;
@@ -67,11 +67,11 @@ const SelectButton: React.FC<SelectButtonProps> = ({ label, iconName, isSelected
 
     return (
         <Pressable onPress={onPress}>
-            <MotiView state={backgroundColorAnim} style={{ ...BaseButtonStyle, shadowOpacity: 0, borderColor: theme.palette.primary.on, borderWidth: 1 }} accessibilityLabel={accessibilityLabel}>
+            <MotiView state={backgroundColorAnim} style={{ ...baseButtonStyle, shadowOpacity: 0, borderColor: theme.palette.primary.on, borderWidth: 1 }} accessibilityLabel={accessibilityLabel}>
                 <MotiText state={colorAnim}>
                     <Ionicons name={iconName} size={Units.LARGE} />
                 </MotiText>
-                <MotiText state={colorAnim} style={{ ...BodyStyles, color: theme.palette.primary.on, fontFamily: "Poppins-Medium" }}>{label}</MotiText>
+                <MotiText state={colorAnim} style={{ ...textBodyStyles, color: theme.palette.primary.on, fontFamily: "Poppins-Medium" }}>{label}</MotiText>
             </MotiView>
         </Pressable>
     );

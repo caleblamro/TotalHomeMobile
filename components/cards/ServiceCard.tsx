@@ -1,6 +1,6 @@
 import { Service } from "../../global/api/Api";
 import CardContainer, { CardContainerProps } from "./CardContainer";
-import { BodyStyles, FlexColumn, FlexRow, IconButtonStyle, NoPadding, TitleStyles } from "../../global/styles/Styles";
+import { textBodyStyles, flexColumn, flexRow, iconButtonStyle, noPadding, textTitleStyles } from "../../global/styles/Styles";
 import { View, Text } from "react-native";
 import { FontSizes, Units } from "../../global/styles/Constants";
 import { useTheme } from "../../global/hooks/Hooks";
@@ -19,21 +19,21 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
 
     return (
         <CardContainer animationProps={animationProps} style={{ ...style, padding: Units.LARGE, paddingTop: Units.LARGE, paddingBottom: Units.LARGE, marginTop: Units.LARGE }}>
-            <View style={{ ...FlexRow, gap: Units.MEDIUM, alignItems: "center" }}>
+            <View style={{ ...flexRow, gap: Units.MEDIUM, alignItems: "center" }}>
                 <View style={{ width: Units.EXTRA_LARGE, height: Units.EXTRA_LARGE }}>
                     {/* SERVICE PICTURE ? OR MAYBE PROFILE PICTURE */}
                     <Ionicons name="person-circle-outline" size={Units.EXTRA_LARGE} color={theme.palette.primary.on} />
                 </View>
-                <View style={{ ...FlexColumn }}>
-                    <Text style={{ ...TitleStyles, fontSize: FontSizes.LARGE, color: theme.palette.primary.on }}>
+                <View style={{ ...flexColumn }}>
+                    <Text style={{ ...textTitleStyles, fontSize: FontSizes.LARGE, color: theme.palette.primary.on }}>
                         {service.name}
                     </Text>
-                    <Text style={{ ...TitleStyles, fontSize: FontSizes.MEDIUM, color: theme.palette.tertiary.main }}>
+                    <Text style={{ ...textTitleStyles, fontSize: FontSizes.MEDIUM, color: theme.palette.tertiary.main }}>
                         {service.providedBy}
                     </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: "flex-end", justifyContent: "center" }}>
-                    <Button style={{ ...IconButtonStyle, ...NoPadding, shadowOpacity: 0, backgroundColor: theme.palette.secondary.on }} type={ButtonType.FILLED} onPress={() => console.error("Not implemented!")} accessibilityLabel={`Chat with ${service.providedBy}`}>
+                    <Button style={{ ...iconButtonStyle, ...noPadding, shadowOpacity: 0, backgroundColor: theme.palette.secondary.on }} type={ButtonType.FILLED} onPress={() => console.error("Not implemented!")} accessibilityLabel={`Chat with ${service.providedBy}`}>
                         <MaterialCommunityIcons
                             name="chat-plus"
                             size={Units.LARGE}
@@ -42,8 +42,8 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
                     </Button>
                 </View>
             </View>
-            <View style={{ ...FlexRow, justifyContent: "space-evenly", alignItems: "center", marginTop: Units.MEDIUM }}>
-                <View style={{ ...FlexRow, gap: 2 }}>
+            <View style={{ ...flexRow, justifyContent: "space-evenly", alignItems: "center", marginTop: Units.MEDIUM }}>
+                <View style={{ ...flexRow, gap: 2 }}>
                     {Array.from({ length: service.rating }, (_value, index) => (
                         <Ionicons
                             key={`service${service.name}Rating${index}`}
@@ -54,15 +54,15 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
                     ))}
                 </View>
                 <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: theme.palette.tertiary.main }} />
-                <Text style={{ ...TitleStyles, fontSize: FontSizes.SMALL, color: theme.palette.primary.on }}>
+                <Text style={{ ...textTitleStyles, fontSize: FontSizes.SMALL, color: theme.palette.primary.on }}>
                     {service.recurring ? service.recurringFrequency : "One Time"}
                 </Text>
                 <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: theme.palette.tertiary.main }} />
-                <Text style={{ ...TitleStyles, fontSize: FontSizes.SMALL, color: theme.palette.alert.success }}>
+                <Text style={{ ...textTitleStyles, fontSize: FontSizes.SMALL, color: theme.palette.alert.success }}>
                     {!service.needQuote ? "$ " + service.price : "Quoted"}
                 </Text>
             </View>
-            <View style={{ ...FlexRow, marginTop: Units.MEDIUM, gap: Units.SMALL }}>
+            <View style={{ ...flexRow, marginTop: Units.MEDIUM, gap: Units.SMALL }}>
                 <ServiceTagMapping type={service.type} />
                 <Tag
                     icon={<MaterialCommunityIcons name={service.negotiable ? "handshake" : "cancel"} size={Units.MEDIUM} color={service.negotiable ? theme.palette.alert.success : theme.palette.alert.error} />}
@@ -70,15 +70,15 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
                     name={service.negotiable ? "Negotiable" : "Non-Negotiable"}
                 />
             </View>
-            <View style={{ ...FlexRow, gap: Units.SMALL, marginTop: Units.MEDIUM }}>
-                <Text style={{ ...TitleStyles, fontSize: FontSizes.MEDIUM, color: theme.palette.tertiary.main, fontFamily: "Poppins-Medium" }}>
+            <View style={{ ...flexRow, gap: Units.SMALL, marginTop: Units.MEDIUM }}>
+                <Text style={{ ...textTitleStyles, fontSize: FontSizes.MEDIUM, color: theme.palette.tertiary.main, fontFamily: "Poppins-Medium" }}>
                     {"    " + service.description}
                 </Text>
             </View>
-            <View style={{ ...FlexColumn, gap: Units.MEDIUM, marginTop: Units.MEDIUM }}>
+            <View style={{ ...flexColumn, gap: Units.MEDIUM, marginTop: Units.MEDIUM }}>
                 <Button style={{ shadowOpacity: 0, justifyContent: "center", backgroundColor: theme.palette.primary.on }} type={ButtonType.FILLED} onPress={() => console.error("Not implemented!")} accessibilityLabel={`Click to start activation process for ${service.name}`}>
                     <Ionicons name={service.needQuote ? "send" : "add-circle-sharp"} size={Units.LARGE} color={theme.palette.primary.main} />
-                    <Text style={{ ...BodyStyles, color: theme.palette.primary.main, fontFamily: "Poppins-Medium" }}>
+                    <Text style={{ ...textBodyStyles, color: theme.palette.primary.main, fontFamily: "Poppins-Medium" }}>
                         {service.needQuote ? "Request Quote" : "Activate Service"}
                     </Text>
                 </Button>
