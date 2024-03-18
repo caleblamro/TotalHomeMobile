@@ -18,6 +18,9 @@ import { AccountType, OwnerUser, ProviderUser, getCurrentUserInformation } from 
 import Alert, { AlertProps, AlertType } from "../../../components/alert/Alert";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import ProviderHome from "../provider/home/ProviderHome";
+import ProviderSearch from "../provider/search/ProviderSearch";
+import ProviderClients from "../provider/clients/ProviderClients";
+import ProviderSettings from "../provider/settings/ProviderSettings";
 
 
 export type RootStackParamList = {
@@ -144,14 +147,16 @@ export default function ScreenStack() {
             <AlertContext.Provider value={{ props: alertProps, info, warning, error }}>
                 <ThemeContext.Provider value={theme}>
                     <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false, animation: "none" }}>
-                        {/* SET gestureEnabled: false to disable swipe back */}
+                        <Stack.Screen name="Auth" options={{ gestureEnabled: false }} component={Auth} />
+                        <Stack.Screen name="Signup" options={{ gestureEnabled: false }} component={Signup} />
                         <Stack.Screen name="OwnerHome" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerHome} />
                         <Stack.Screen name="OwnerSettings" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerSettings} />
                         <Stack.Screen name="OwnerSearch" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerSearch} />
                         <Stack.Screen name="OwnerServices" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerServices} />
-                        <Stack.Screen name="Auth" options={{ gestureEnabled: false }} component={Auth} />
-                        <Stack.Screen name="Signup" options={{ gestureEnabled: false }} component={Signup} />
                         <Stack.Screen name="ProviderHome" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={ProviderHome} />
+                        <Stack.Screen name="ProviderSearch" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={ProviderSearch} />
+                        <Stack.Screen name="ProviderClients" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={ProviderClients} />
+                        <Stack.Screen name="ProviderSettings" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={ProviderSettings} />
                     </Stack.Navigator>
                     <SafeAreaProvider style={{position: "absolute", width: "100%"}}>
                         <Alert type={alertProps.type} message={alertProps.message} show={alertProps.show} />

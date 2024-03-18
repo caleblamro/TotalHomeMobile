@@ -12,7 +12,7 @@ interface ModalControllerProps {
     subtitle?: string;
     isLink?: boolean;
     link?: string;
-    icon: React.ReactElement;
+    icon: React.ReactNode;
     children: React.ReactNode;
 }
 

@@ -4,7 +4,7 @@ import Alert, { AlertProps, AlertType } from "./Alert";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 interface Props {
-    children?: React.ReactNode;
+    children?: React.ReactElement;
 }
 
 export default function AlertContextProvider({ children }: Props) {

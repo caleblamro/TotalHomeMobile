@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 interface SettingsItem {
     title: string;
-    modalContent: React.ReactNode;
+    modalContent?: React.ReactNode;
     icon: React.ReactElement;
 }
 

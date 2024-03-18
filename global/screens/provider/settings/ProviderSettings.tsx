@@ -16,8 +16,8 @@ import { Ionicons } from '@expo/vector-icons';
 import Button, { ButtonType } from '../../../../components/button/Button';
 import { supabase } from '../../../api/supabase/supabase';
 
-type Props = NativeStackScreenProps<RootStackParamList, "OwnerSettings">;
-export default function OwnerSettings({ navigation, route }: Props) {
+type Props = NativeStackScreenProps<RootStackParamList, "ProviderSettings">;
+export default function ProviderSettings({ navigation, route }: Props) {
     const { session } = route.params;
     const theme = useTheme();
     const sections = getSections(theme);
