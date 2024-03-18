@@ -33,7 +33,7 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
                     </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: "flex-end", justifyContent: "center" }}>
-                    <Button style={{ ...IconButtonStyle, ...NoPadding, shadowOpacity: 0, backgroundColor: theme.palette.secondary.on }} type={ButtonType.FILLED} onPress={() => console.log("chat")} accessibilityLabel={`Chat with ${service.providedBy}`}>
+                    <Button style={{ ...IconButtonStyle, ...NoPadding, shadowOpacity: 0, backgroundColor: theme.palette.secondary.on }} type={ButtonType.FILLED} onPress={() => console.error("Not implemented!")} accessibilityLabel={`Chat with ${service.providedBy}`}>
                         <MaterialCommunityIcons
                             name="chat-plus"
                             size={Units.LARGE}
@@ -76,7 +76,7 @@ export default function ServiceCard({ animationProps, style, service }: ServiceC
                 </Text>
             </View>
             <View style={{ ...FlexColumn, gap: Units.MEDIUM, marginTop: Units.MEDIUM }}>
-                <Button style={{ shadowOpacity: 0, justifyContent: "center", backgroundColor: theme.palette.primary.on }} type={ButtonType.FILLED} onPress={() => console.log("+ Event on service")} accessibilityLabel={`Click to start activation process for ${service.name}`}>
+                <Button style={{ shadowOpacity: 0, justifyContent: "center", backgroundColor: theme.palette.primary.on }} type={ButtonType.FILLED} onPress={() => console.error("Not implemented!")} accessibilityLabel={`Click to start activation process for ${service.name}`}>
                     <Ionicons name={service.needQuote ? "send" : "add-circle-sharp"} size={Units.LARGE} color={theme.palette.primary.main} />
                     <Text style={{ ...BodyStyles, color: theme.palette.primary.main, fontFamily: "Poppins-Medium" }}>
                         {service.needQuote ? "Request Quote" : "Activate Service"}

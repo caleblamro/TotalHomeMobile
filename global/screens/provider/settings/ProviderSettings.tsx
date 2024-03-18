@@ -24,13 +24,13 @@ export default function ProviderSettings({ navigation, route }: Props) {
 
     const logout = async () => {
         const { error } = await supabase.auth.signOut();
-        if(error) {
-            console.log("API Error: Couldn't sign out");
+        if (error) {
+            console.error("API Error: Couldn't sign out ", error);
         }
         navigation.navigate("Auth", { session: null });
     }
-    
-    
+
+
     const rightActionButton = (
         <Button onPress={logout} type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0, backgroundColor: "transparent" }} accessibilityLabel={'Press to log out'} >
             <Ionicons name="log-out" size={Units.LARGE} color={theme.palette.primary.on} />
@@ -38,7 +38,7 @@ export default function ProviderSettings({ navigation, route }: Props) {
     )
 
     return (
-        <BaseScreen title="Settings" style={{padding: Units.EXTRA_LARGE, paddingTop: 0, paddingBottom: 0}} rightAction={rightActionButton}>
+        <BaseScreen title="Settings" style={{ padding: Units.EXTRA_LARGE, paddingTop: 0, paddingBottom: 0 }} rightAction={rightActionButton}>
             {sections.map((section, index) => (
                 <React.Fragment key={`settingsSection${index}`}>
                     <MotiView key={`settingsSectionTitle${index}`} {...FadeInFromBottom(index + 1)} style={{ marginTop: Units.EXTRA_LARGE, marginBottom: Units.SMALL + 4 }}>

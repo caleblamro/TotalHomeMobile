@@ -44,7 +44,7 @@ export default function Auth({ navigation, route }: Props) {
         });
         if (error) {
             alert?.error("Incorrect email or password");
-            console.log("incorrect email or password");
+            console.error("API error: supabase returned an error ", error);
         } else {
             const data = await getCurrentUserInformation(userData.session);
             if(data !== null) {

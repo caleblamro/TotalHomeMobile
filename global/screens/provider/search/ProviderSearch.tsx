@@ -26,7 +26,7 @@ export default function ProviderSearch({ navigation }: Props) {
     }
 
     const rightActionButton = (
-        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.log("Filters")} accessibilityLabel={'Press to configure search filters'} >
+        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.error("Not implemented!")} accessibilityLabel={'Press to configure search filters'} >
             <Ionicons name="filter-circle" size={Units.LARGE} color={theme.palette.primary.main} />
         </Button>
     )

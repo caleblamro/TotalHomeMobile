@@ -13,7 +13,7 @@ export default function ProviderClients({ navigation, route }: Props) {
     const theme = useTheme();
 
     const rightActionButton = (
-        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.log("inbox")} accessibilityLabel={'Press to open inbox'} >
+        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.error("Not implemented!")} accessibilityLabel={'Press to open inbox'} >
             <Ionicons name="people" size={Units.LARGE} color={theme.palette.primary.main} />
         </Button>
     );

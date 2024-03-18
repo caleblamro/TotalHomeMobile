@@ -50,7 +50,7 @@ export default function Form({ fields, onSubmit, animationDelay = 0 }: FormProps
         if (allFieldsValid) {
             onSubmit(formState);
         } else {
-            console.log('Validation failed');
+            console.error('Validation failed');
         }
     };
 

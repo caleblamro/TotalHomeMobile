@@ -51,7 +51,7 @@ export default function Signup({ navigation }: Props) {
 
 
     function onFinish(formData: any): void {
-        console.log("Done: ", formData);
+        console.log("Form done: ", formData);
         console.log(accountData);
     }
     

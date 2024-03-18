@@ -59,7 +59,7 @@ export interface ProviderUser extends BaseUser {
 }
 export async function getCurrentUserInformation(session: Session): Promise<OwnerUser | ProviderUser | null> {
     if (!session) {
-        console.log("Auth Error: Session not defined... cannot proceed with request 1");
+        console.error("Auth Error: Session not defined... cannot proceed with request getCurrentUserInformation");
         return null;
     }
     const { data: accountData, error: accountDataError } = await supabase
@@ -67,7 +67,7 @@ export async function getCurrentUserInformation(session: Session): Promise<Owner
         .select("*")
         .eq("id", session?.user?.id);
     if (accountDataError || !accountData || accountData.length !== 1) {
-        console.log("API Error: in getUserInformation");
+        console.error("API Error: supabase returned an error or nullish results ", accountDataError);
         return null;
     }
     const { username, type } = accountData[0];
@@ -98,7 +98,7 @@ async function signUpWithEmail(email: string, password: string, accountData: Own
 
 async function getOwnerInformation(baseUserInfo: Tables<"user_info">, session: Session): Promise<OwnerUser | null> {
     if (!session?.user.id) {
-        console.log("Auth Error: Session not defined... cannot proceed with request 2");
+        console.error("Auth Error: Session not defined... cannot proceed with request getOwnerInformation");
         return null;
     }
     const { data: userData, error: userDataError } = await supabase
@@ -108,7 +108,7 @@ async function getOwnerInformation(baseUserInfo: Tables<"user_info">, session: S
 
 
     if (userDataError || !userData || userData.length !== 1) {
-        console.log("API Error: in getOwnerInformation");
+        console.error("API Error: supabase returned an error or nullish results ", userDataError);
         return null;
     }
 
@@ -128,7 +128,7 @@ async function getOwnerInformation(baseUserInfo: Tables<"user_info">, session: S
 
 async function getProviderInformation(baseUserInfo: Tables<"user_info">, session: Session): Promise<ProviderUser | null> {
     if (!session?.user.id) {
-        console.log("Auth Error: Session not defined... cannot proceed with request 3");
+        console.error("Auth Error: Session not defined... cannot proceed with request getProviderInformation");
         return null;
     }
     const { data: userData, error: userDataError } = await supabase
@@ -137,7 +137,7 @@ async function getProviderInformation(baseUserInfo: Tables<"user_info">, session
         .eq("id", session?.user?.id);
 
     if (userDataError || !userData || userData.length !== 1) {
-        console.log("API Error: in getProviderInformation: ", userDataError);
+        console.error("API Error: supabase returned an error or nullish results ", userDataError);
         return null;
     }
     const res = userData[0];

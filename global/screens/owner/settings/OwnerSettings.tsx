@@ -25,7 +25,7 @@ export default function OwnerSettings({ navigation, route }: Props) {
     const logout = async () => {
         const { error } = await supabase.auth.signOut();
         if(error) {
-            console.log("API Error: Couldn't sign out");
+            console.error("API Error: Couldn't sign out");
         }
         navigation.navigate("Auth", { session: null });
     }

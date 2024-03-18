@@ -27,13 +27,13 @@ export default function PasswordForm({ onFormValidated }: FormProps) {
         <MotiView>
             <Form fields={passwordFormData(theme)} onSubmit={(obj) => onFormCompleted(obj)} />
             <MotiView {...FadeInFromBottom(3)} style={{marginTop: Units.MEDIUM, display: "flex", flexDirection: "row", justifyContent: "space-evenly", gap: Units.MEDIUM}}>
-                <Button style={{...FlexRow, justifyContent: "center", borderColor: theme.palette.alert.error}} onPress={() => console.log("Not implemented!")} accessibilityLabel="Click to finish account setup" type={ButtonType.OUTLINED}>
+                <Button style={{...FlexRow, justifyContent: "center", borderColor: theme.palette.alert.error}} onPress={() => console.error("Not implemented!")} accessibilityLabel="Click to finish account setup" type={ButtonType.OUTLINED}>
                     <Ionicons name="close-circle" size={Units.LARGE} color={theme.palette.alert.error} />
                     <Text style={{ ...BodyStyles, color: theme.palette.alert.error, fontFamily: "Poppins-Medium" }}>
                         Clear
                     </Text>
                 </Button>
-                <Button style={{...FlexRow, justifyContent: "center"}} onPress={() => console.log("Not implemented!")} accessibilityLabel="Click to finish account setup" type={ButtonType.FILLED}>
+                <Button style={{...FlexRow, justifyContent: "center"}} onPress={() => console.error("Not implemented!")} accessibilityLabel="Click to finish account setup" type={ButtonType.FILLED}>
                     <Ionicons name="enter-sharp" size={Units.LARGE} color={theme.palette.primary.main} />
                     <Text style={{ ...BodyStyles, color: theme.palette.primary.main, fontFamily: "Poppins-Medium" }}>
                         Finish
