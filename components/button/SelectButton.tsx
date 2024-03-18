@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, StyleSheet, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Units } from '../../global/styles/Constants';
 import { useTheme } from '../../global/hooks/Hooks';
-import Button, { ButtonType } from './Button';
 import { MotiText, MotiView, useAnimationState } from 'moti';
 import { BaseButtonStyle, BodyStyles } from '../../global/styles/Styles';
-import { MotiPressable } from 'moti/interactions';
 
 interface SelectButtonProps {
     label: string;

@@ -60,29 +60,23 @@ export type Database = {
       owner_info: {
         Row: {
           created_at: string
-          first_name: string | null
-          home: Json | null
+          home: Json
           id: string
           interested_in: Database["public"]["Enums"]["ServiceType"][] | null
-          last_name: string | null
           settings_config: Json | null
         }
         Insert: {
           created_at?: string
-          first_name?: string | null
-          home?: Json | null
+          home: Json
           id?: string
           interested_in?: Database["public"]["Enums"]["ServiceType"][] | null
-          last_name?: string | null
           settings_config?: Json | null
         }
         Update: {
           created_at?: string
-          first_name?: string | null
-          home?: Json | null
+          home?: Json
           id?: string
           interested_in?: Database["public"]["Enums"]["ServiceType"][] | null
-          last_name?: string | null
           settings_config?: Json | null
         }
         Relationships: [
@@ -97,22 +91,25 @@ export type Database = {
       }
       servicer_info: {
         Row: {
+          business_address: Json
           business_description: string | null
-          business_name: string | null
+          business_name: string
           created_at: string
           id: string
           settings_config: Json | null
         }
         Insert: {
+          business_address: Json
           business_description?: string | null
-          business_name?: string | null
+          business_name: string
           created_at?: string
           id: string
           settings_config?: Json | null
         }
         Update: {
+          business_address?: Json
           business_description?: string | null
-          business_name?: string | null
+          business_name?: string
           created_at?: string
           id?: string
           settings_config?: Json | null
@@ -189,21 +186,27 @@ export type Database = {
       user_info: {
         Row: {
           created_at: string
+          first_name: string
           id: string
-          type: Database["public"]["Enums"]["AccountType"] | null
-          username: string | null
+          last_name: string
+          type: Database["public"]["Enums"]["AccountType"]
+          username: string
         }
         Insert: {
           created_at?: string
+          first_name: string
           id?: string
-          type?: Database["public"]["Enums"]["AccountType"] | null
-          username?: string | null
+          last_name: string
+          type: Database["public"]["Enums"]["AccountType"]
+          username: string
         }
         Update: {
           created_at?: string
+          first_name?: string
           id?: string
-          type?: Database["public"]["Enums"]["AccountType"] | null
-          username?: string | null
+          last_name?: string
+          type?: Database["public"]["Enums"]["AccountType"]
+          username?: string
         }
         Relationships: []
       }

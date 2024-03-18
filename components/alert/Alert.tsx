@@ -1,7 +1,7 @@
-import { AnimatePresence, MotiView, useAnimationState } from 'moti';
+import { AnimatePresence, MotiView } from 'moti';
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { BodyStyles, DropShadow, FlexRow, IconButtonStyle, NoPadding, TitleStyles } from '../../global/styles/Styles';
+import { Text, View } from 'react-native';
+import { DropShadow, FlexRow, IconButtonStyle, NoPadding, TitleStyles } from '../../global/styles/Styles';
 import { Ionicons } from '@expo/vector-icons';
 import Button, { ButtonType } from '../button/Button';
 import { FontSizes, Units } from '../../global/styles/Constants';

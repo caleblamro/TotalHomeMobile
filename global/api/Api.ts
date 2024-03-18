@@ -1,5 +1,6 @@
-import { PostgrestError, Session } from "@supabase/supabase-js";
+import { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase/supabase";
+import { Json, Tables } from "./supabase/types";
 
 // Enums for AccountType and ServiceType
 export enum AccountType {
@@ -37,19 +38,28 @@ interface BaseUser {
     accountType: AccountType;
 }
 
+interface Address {
+    zip: number;
+    city: string;
+    state: string;
+    address: string;
+}
+
 // Extended interfaces for OWNER and PROVIDER types
 export interface OwnerUser extends BaseUser {
-    accountType: AccountType.OWNER;
+    homeAddress: Json;
     interestedIn: ServiceType[];
 }
 
 export interface ProviderUser extends BaseUser {
-    accountType: AccountType.PROVIDER;
-    activeServices: string[]; // list of Service.id
+    businessName: string;
+    businessAddress: Json;
+    businessDescription: string | null;
+    activeServices?: string[]; // list of Service.id
 }
-export async function getCurrentUserInformation(session: any): Promise<OwnerUser | ProviderUser | null> {
+export async function getCurrentUserInformation(session: Session): Promise<OwnerUser | ProviderUser | null> {
     if (!session) {
-        console.log("Auth Error: Session not defined... cannot proceed with request");
+        console.log("Auth Error: Session not defined... cannot proceed with request 1");
         return null;
     }
     const { data: accountData, error: accountDataError } = await supabase
@@ -63,61 +73,84 @@ export async function getCurrentUserInformation(session: any): Promise<OwnerUser
     const { username, type } = accountData[0];
     if (username) {
         if (type === "OWNER") {
-            return await getOwnerInformation(username, session);
+            return await getOwnerInformation(accountData[0], session);
         } else {
-            return await getProviderInformation(username, session);
+            return await getProviderInformation(accountData[0], session);
         }
     }
     return null;
 }
 
-async function getOwnerInformation(username: string, session: Session): Promise<OwnerUser | null> {
+async function signUpWithEmail(email: string, password: string, accountData: OwnerUser | ProviderUser) {
+
+    let { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password
+    })
+    if(data) {
+        if(accountData.accountType === AccountType.OWNER) {
+            // insert other account data
+        } else {
+            // insert other account data
+        }
+    }
+}
+
+async function getOwnerInformation(baseUserInfo: Tables<"user_info">, session: Session): Promise<OwnerUser | null> {
     if (!session?.user.id) {
-        console.log("Auth Error: Session not defined... cannot proceed with request");
+        console.log("Auth Error: Session not defined... cannot proceed with request 2");
         return null;
     }
     const { data: userData, error: userDataError } = await supabase
         .from("owner_info")
         .select("*")
         .eq("id", session?.user?.id);
+
+
     if (userDataError || !userData || userData.length !== 1) {
         console.log("API Error: in getOwnerInformation");
         return null;
     }
+
     const res = userData[0];
     const interestedServices: ServiceType[] = res.interested_in ? res.interested_in.map((val) => ServiceType[val]) : [];
     const tempUserInfo: OwnerUser = {
         accountType: AccountType.OWNER,
         interestedIn: interestedServices,
-        id: res.id,
-        firstName: res.first_name || "",
-        lastName: res.last_name || "",
-        username: username
+        firstName: baseUserInfo.first_name,
+        lastName: baseUserInfo.last_name,
+        id: baseUserInfo.id,
+        username: baseUserInfo.username,
+        homeAddress: res.home,
     }
     return tempUserInfo;
 }
 
-async function getProviderInformation(username: string, session: Session): Promise<ProviderUser | null> {
+async function getProviderInformation(baseUserInfo: Tables<"user_info">, session: Session): Promise<ProviderUser | null> {
     if (!session?.user.id) {
-        console.log("Auth Error: Session not defined... cannot proceed with request");
+        console.log("Auth Error: Session not defined... cannot proceed with request 3");
         return null;
     }
     const { data: userData, error: userDataError } = await supabase
         .from("servicer_info")
         .select("*")
         .eq("id", session?.user?.id);
+
     if (userDataError || !userData || userData.length !== 1) {
-        console.log("API Error: in getProviderInformation");
+        console.log("API Error: in getProviderInformation: ", userDataError);
         return null;
     }
     const res = userData[0];
     const tempUserInfo: ProviderUser = {
         accountType: AccountType.PROVIDER,
-        id: res.id,
+        id: baseUserInfo.id,
         activeServices: [], // Assuming services is an array of service IDs
-        firstName: "",
-        lastName: "",
-        username: username
+        firstName: baseUserInfo.first_name,
+        lastName: baseUserInfo.last_name,
+        username: baseUserInfo.username,
+        businessName: res.business_name,
+        businessAddress: res.business_address,
+        businessDescription: res.business_description
     }
     return tempUserInfo;
 }

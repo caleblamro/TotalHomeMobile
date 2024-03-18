@@ -1,9 +1,9 @@
-import { AnimatePresence, MotiView } from "moti";
-import { useEffect, useReducer, useRef, useState } from "react";
-import { View, Text, TextInput, Keyboard, TouchableWithoutFeedback, AppState } from "react-native";
+import { MotiView } from "moti";
+import { useEffect, useRef, useState } from "react";
+import { View, Text, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { useAlert, useTheme } from "../../../hooks/Hooks";
 import { FadeInFromBottom } from "../../../../components/animation/Animations";
-import { AntdInputWrapperStyle, AntdTextInputStyle, BodyStyles, FillScreen, FillWidthAndCenter, FlexColumnFullWidth, NoPadding, TextInputStyle, TitleStyles } from "../../../styles/Styles";
+import { BodyStyles, FillScreen, FillWidthAndCenter, FlexColumnFullWidth, TitleStyles } from "../../../styles/Styles";
 import { Units } from "../../../styles/Constants";
 import Logo from "../../../theme/Logo";
 import Button, { ButtonType } from "../../../../components/button/Button";
@@ -14,6 +14,7 @@ import { supabase } from "../../../api/supabase/supabase";
 import { useIsFocused } from "@react-navigation/native";
 import { InputItem } from "@ant-design/react-native";
 import Input from "../../../../components/input/Input";
+import { AccountType, getCurrentUserInformation } from "../../../api/Api";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "Auth">;
@@ -37,7 +38,7 @@ export default function Auth({ navigation, route }: Props) {
 
     async function signInWithEmail() {
         setLoginLoading(true);
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data: userData, error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
         });
@@ -45,7 +46,16 @@ export default function Auth({ navigation, route }: Props) {
             alert?.error("Incorrect email or password");
             console.log("incorrect email or password");
         } else {
-            navigation.navigate("Home", { userId: "1", session: session });
+            const data = await getCurrentUserInformation(userData.session);
+            if(data !== null) {
+                if(data.accountType === AccountType.OWNER) {
+                    navigation.navigate("OwnerHome", { userId: "1", session: session });
+                }else{
+                    navigation.navigate("ProviderHome", { session: session });
+                }
+            } else {
+                alert?.error("User not found. Please contact support.");
+            }
         }
         setLoginLoading(false)
     }

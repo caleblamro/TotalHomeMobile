@@ -1,13 +1,6 @@
-import { MotiProps, MotiView } from "moti";
-import { TextInput, View, ViewStyle, Text } from "react-native";
-import { AntdInputWrapperStyle, AntdTextInputStyle, FlexRow, TextInputStyle, TitleStyles } from "../../../styles/Styles";
-import { FadeInFromBottom, FadeInFromLeft, FadeInFromRight } from "../../../../components/animation/Animations";
-import { FontSizes, Units } from "../../../styles/Constants";
+import { MotiView } from "moti";
+import { ViewStyle } from "react-native";
 import { useTheme } from "../../../hooks/Hooks";
-import { useRef, useState } from "react";
-import { Ionicons } from '@expo/vector-icons';
-import { InputItem } from "@ant-design/react-native";
-import Input from "../../../../components/input/Input";
 import Form from "../../../../components/input/Form";
 import { ownerFormData } from "../../../../components/input/Forms";
 

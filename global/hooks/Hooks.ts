@@ -1,6 +1,6 @@
 import React from "react";
 import { tokens, ThemeMode, Theme } from "../theme/Theme";
-import { AlertProps, AlertType } from "../../components/alert/Alert";
+import { AlertProps } from "../../components/alert/Alert";
 
 export const ThemeContext = React.createContext<Theme>(tokens(ThemeMode.LIGHT));
 

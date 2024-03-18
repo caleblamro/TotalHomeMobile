@@ -8,39 +8,39 @@ import { Dimensions, Pressable } from "react-native";
 import { useTheme } from "../../hooks/Hooks";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
-import { RootStackParamList } from "./ScreenStack";
+import { RootStackParamList } from "../util/ScreenStack";
 import { Session } from "@supabase/supabase-js";
 
 interface ScreenNavProps {
     session: Session;
 }
 
-export default function ScreenNav({ session } : ScreenNavProps) {
+export default function ProviderScreenNav({ session } : ScreenNavProps) {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const theme = useTheme();
     const [currentScreen, setCurrentScreen] = useState(0);
     const screenWidth = Dimensions.get("screen").width;
 
     interface MenuInterface {
-        name: "Home" | "Settings" | "Search" | "Services";
+        name: "ProviderHome" | "ProviderSettings" | "ProviderSearch" | "ProviderClients";
         icon: React.ReactElement;
     }
     
     const menuRoutes: MenuInterface[] = [
         {
-            name: "Home",
+            name: "ProviderHome",
             icon: <Ionicons name="home" size={Units.LARGE} color={currentScreen === 0 ? theme.palette.primary.on : theme.palette.tertiary.main} />
         },
         {
-            name: "Search",
+            name: "ProviderSearch",
             icon: <Ionicons name="search" size={Units.LARGE} color={currentScreen === 1 ? theme.palette.primary.on : theme.palette.tertiary.main} />
         },
         {
-            name: "Services",
+            name: "ProviderClients",
             icon: <Ionicons name="calendar" size={Units.LARGE} color={currentScreen === 2 ? theme.palette.primary.on : theme.palette.tertiary.main} />
         },
         {
-            name: "Settings",
+            name: "ProviderSettings",
             icon: <Ionicons name="settings" size={Units.LARGE} color={currentScreen === 3 ? theme.palette.primary.on : theme.palette.tertiary.main} />
         },
     ]

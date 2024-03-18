@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ViewStyle } from 'react-native';
-import { MotiView, MotiText, AnimatePresence, MotiProps } from 'moti';
+import { View } from 'react-native';
+import { MotiView, AnimatePresence } from 'moti';
 import { FadeInFromBottom } from '../../../../components/animation/Animations';
-import { BodyStyles, FillAndCenter, FillWidthAndCenter, FlexRow, IconButtonStyle } from '../../../styles/Styles';
+import { FillWidthAndCenter, IconButtonStyle } from '../../../styles/Styles';
 import { useTheme } from '../../../hooks/Hooks';
 import { RootStackParamList } from '../../util/ScreenStack';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -25,6 +24,7 @@ export default function Signup({ navigation }: Props) {
     const theme = useTheme();
     const [selectedAccountType, setSelectedAccountType] = useState<AccountType | null>(null);
     const [accountTypeDataValid, setAccountTypeDataValid] = useState(false);
+    const [accountData, setAccountData] = useState([]);
 
     const rightActionButton = (
         <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => navigation.navigate("Auth", { session: null })} accessibilityLabel={'Press to return to login'} >
@@ -39,17 +39,20 @@ export default function Signup({ navigation }: Props) {
 
     const onProviderFormValidated = (formData: any) => {
         console.log("FormData: ", formData);
+        setAccountData(formData);
         setAccountTypeDataValid(true);
     }
 
     const onOwnerFormValidated = (formData: any) => {
         console.log("FormData: ", formData);
+        setAccountData(formData);
         setAccountTypeDataValid(true);
     }
 
 
-    function onFinish([key]: any): void {
-        console.log("done");
+    function onFinish(formData: any): void {
+        console.log("Done: ", formData);
+        console.log(accountData);
     }
     
     useEffect(() => {

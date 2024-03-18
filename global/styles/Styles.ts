@@ -1,4 +1,4 @@
-import { Dimensions, StyleProp, TextStyle, ViewStyle } from "react-native"
+import { Dimensions, TextStyle, ViewStyle } from "react-native"
 import { FontSizes, Units } from "./Constants"
 import { InputItemStyle } from "@ant-design/react-native/lib/input-item/style"
 

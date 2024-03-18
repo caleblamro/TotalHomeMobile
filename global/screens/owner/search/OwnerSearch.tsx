@@ -9,12 +9,12 @@ import BaseScreen from '../../util/BaseScreen';
 import { MotiView } from 'moti';
 import { FadeInFromBottom } from '../../../../components/animation/Animations';
 import { useState, useRef, useEffect } from 'react';
-import { View, TextInput, ScrollView } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { fetchServices, Service } from '../../../api/Api';
 import ServiceCard from '../../../../components/cards/ServiceCard';
 
-type Props = NativeStackScreenProps<RootStackParamList, "Search">;
-export default function Search({ navigation }: Props) {
+type Props = NativeStackScreenProps<RootStackParamList, "OwnerSearch">;
+export default function OwnerSearch({ navigation }: Props) {
     const theme = useTheme();
     const [searchTextData, setSearchTextData] = useState("");
     const searchTextInputRef = useRef<TextInput>(null);

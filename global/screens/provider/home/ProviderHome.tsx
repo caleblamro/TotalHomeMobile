@@ -7,18 +7,19 @@ import Button, { ButtonType } from '../../../../components/button/Button';
 import { Ionicons } from '@expo/vector-icons';
 import BaseScreen from '../../util/BaseScreen';
 
-type Props = NativeStackScreenProps<RootStackParamList, "Services">;
-export default function Services({ navigation }: Props) {
+type Props = NativeStackScreenProps<RootStackParamList, "ProviderHome">;
+export default function ProviderHome({ navigation, route }: Props) {
+    const { session } = route.params;
     const theme = useTheme();
-    
+
     const rightActionButton = (
-        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.log("Payment settings")} accessibilityLabel={'Press to open payment settings'} >
-            <Ionicons name="card" size={Units.LARGE} color={theme.palette.primary.main} />
+        <Button type={ButtonType.FILLED} style={{ ...IconButtonStyle, paddingLeft: 0, paddingRight: 0, shadowOpacity: 0 }} onPress={() => console.log("inbox")} accessibilityLabel={'Press to open inbox'} >
+            <Ionicons name="chatbox-ellipses" size={Units.LARGE} color={theme.palette.primary.main} />
         </Button>
-    )
+    );
 
     return (
-        <BaseScreen title="Active Services" subtitle="View and Manage" rightAction={rightActionButton}>
+        <BaseScreen title="Dashboard" subtitle="Overview" rightAction={rightActionButton}>
         </BaseScreen>
     );
 }

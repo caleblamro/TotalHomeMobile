@@ -1,7 +1,7 @@
-import { AnimatePresence, MotiView } from "moti";
+import { MotiView } from "moti";
 import { View, ViewStyle, Modal as NativeModal, Text } from "react-native";
-import { FadeInFromBottom, FadeInOutFromBottom } from "../animation/Animations";
-import { FillScreen, FillWidthAndCenter, FlexRow, IconButtonStyle, ModalStyle, NoPadding, TitleStyles } from "../../global/styles/Styles";
+import { FadeInFromBottom } from "../animation/Animations";
+import { FillScreen, FillWidthAndCenter, FlexRow, IconButtonStyle, NoPadding, TitleStyles } from "../../global/styles/Styles";
 import Button, { ButtonType } from "../button/Button";
 import { Ionicons } from '@expo/vector-icons';
 import { Units, FontSizes } from "../../global/styles/Constants";

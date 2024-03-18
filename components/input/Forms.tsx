@@ -41,7 +41,7 @@ const usernameAndEmail = (theme: Theme): FormField[] => {
 const firstNameLastName = (theme: Theme): FormField[] => {
     return [
         {
-            key: "first-name",
+            key: "firstName",
             halfWidth: true,
             props: {
                 icon: <Ionicons name="person-circle" color={theme.palette.primary.on} size={Units.LARGE} />,
@@ -57,7 +57,7 @@ const firstNameLastName = (theme: Theme): FormField[] => {
             }
         },
         {
-            key: "last-name",
+            key: "lastName",
             halfWidth: true,
             props: {
                 inputProps: {
@@ -80,7 +80,7 @@ export const ownerFormData = (theme: Theme): FormField[] => {
         ...firstNameLastName(theme),
         ...usernameAndEmail(theme),
         {
-            key: "home-address",
+            key: "homeAddress",
             props: {
                 icon: <Ionicons name="home" color={theme.palette.primary.on} size={Units.LARGE} />,
                 inputProps: {
@@ -103,7 +103,7 @@ export const providerFormData = (theme: Theme): FormField[] => {
         ...firstNameLastName(theme),
         ...usernameAndEmail(theme),
         {
-            key: "business-name",
+            key: "businessName",
             props: {
                 icon: <Ionicons name="business" color={theme.palette.primary.on} size={Units.LARGE} />,
                 inputProps: {
@@ -118,7 +118,7 @@ export const providerFormData = (theme: Theme): FormField[] => {
             }
         },
         {
-            key: "business-address",
+            key: "businessAddress",
             props: {
                 icon: <Ionicons name="pin-sharp" color={theme.palette.primary.on} size={Units.LARGE} />,
                 inputProps: {
@@ -146,6 +146,7 @@ export const passwordFormData = (theme: Theme): FormField[] => {
                     autoCapitalize: "words",
                     autoCorrect: false,
                     type: "text",
+                    secureTextEntry: true,
                     returnKeyType: "next",
                     returnKeyLabel: "Next",
                     accessibilityLabel: "Enter password",
@@ -161,6 +162,7 @@ export const passwordFormData = (theme: Theme): FormField[] => {
                     autoCapitalize: "none",
                     autoCorrect: false,
                     type: "text",
+                    secureTextEntry: true,
                     returnKeyType: "done",
                     returnKeyLabel: "Submit",
                     accessibilityLabel: "Confirm password",

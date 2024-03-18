@@ -1,6 +1,6 @@
 import { Service } from "../../global/api/Api";
 import CardContainer, { CardContainerProps } from "./CardContainer";
-import { BodyStyles, FlexColumn, FlexColumnFullWidth, FlexRow, IconButtonStyle, NoPadding, TitleStyles } from "../../global/styles/Styles";
+import { BodyStyles, FlexColumn, FlexRow, IconButtonStyle, NoPadding, TitleStyles } from "../../global/styles/Styles";
 import { View, Text } from "react-native";
 import { FontSizes, Units } from "../../global/styles/Constants";
 import { useTheme } from "../../global/hooks/Hooks";

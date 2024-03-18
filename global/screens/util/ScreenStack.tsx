@@ -5,22 +5,23 @@ import { AppState, Appearance } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeMode, tokens, Theme } from "../../theme/Theme";
 import { AlertContext, ThemeContext } from "../../hooks/Hooks";
-import Home from '../owner/home/Home';
+import OwnerHome from '../owner/home/OwnerHome';
 import Auth from "../auth/login/Auth";
 import Signup from "../auth/signup/Signup";
-import ScreenNav from "./ScreenNav";
-import Settings from "../owner/settings/Settings";
-import Search from "../owner/search/Search";
-import Services from "../owner/services/Services";
+import OwnerScreenNav from "../owner/OwnerScreenNav";
+import OwnerSettings from "../owner/settings/OwnerSettings";
+import OwnerSearch from "../owner/search/OwnerSearch";
+import OwnerServices from "../owner/services/OwnerServices";
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "../../api/supabase/supabase";
-import { OwnerUser, ProviderUser, getCurrentUserInformation } from "../../api/Api";
+import { AccountType, OwnerUser, ProviderUser, getCurrentUserInformation } from "../../api/Api";
 import Alert, { AlertProps, AlertType } from "../../../components/alert/Alert";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import ProviderHome from "../provider/home/ProviderHome";
 
 
 export type RootStackParamList = {
-    Home: {
+    OwnerHome: {
         userId?: string;
         session: Session | null;
     };
@@ -32,15 +33,27 @@ export type RootStackParamList = {
         password: string;
         session: Session | null;
     };
-    Search: {
+    OwnerSearch: {
         session: Session | null;
     };
-    Settings: {
+    OwnerSettings: {
         session: Session | null;
     };
-    Services: {
+    OwnerServices: {
         session: Session | null;
-    }
+    };
+    ProviderHome: {
+        session: Session | null;
+    };
+    ProviderClients: {
+        session: Session | null;
+    };
+    ProviderSettings: {
+        session: Session | null;
+    };
+    ProviderSearch: {
+        session: Session | null;
+    };
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -112,33 +125,38 @@ export default function ScreenStack() {
 
     useEffect(() =>{
         const fn = async () => {
-            const data = await getCurrentUserInformation(session)
-            console.log(data);
-            setUserInfo(data);
+            if(session) {
+                const data = await getCurrentUserInformation(session);
+                setUserInfo(data);
+            }
         }
         fn();
     }, [session]);
 
+    
     const isLoggedIn = session !== undefined && session !== null && session?.user;
+    const isUserHomeOwner = userInfo?.accountType === AccountType.OWNER;
+    const initialRoute = isLoggedIn ? ( isUserHomeOwner ? "OwnerHome" : "ProviderHome" ) : "Auth";
 
 
     return (
         <NavigationContainer key={isLoggedIn ? "loggedIn" : "notLoggedIn"}>
             <AlertContext.Provider value={{ props: alertProps, info, warning, error }}>
                 <ThemeContext.Provider value={theme}>
-                    <Stack.Navigator initialRouteName={isLoggedIn ? "Home" : "Auth"} screenOptions={{ headerShown: false, animation: "none" }}>
+                    <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ headerShown: false, animation: "none" }}>
                         {/* SET gestureEnabled: false to disable swipe back */}
-                        <Stack.Screen name="Home" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={Home} />
-                        <Stack.Screen name="Settings" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={Settings} />
-                        <Stack.Screen name="Search" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={Search} />
-                        <Stack.Screen name="Services" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={Services} />
+                        <Stack.Screen name="OwnerHome" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerHome} />
+                        <Stack.Screen name="OwnerSettings" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerSettings} />
+                        <Stack.Screen name="OwnerSearch" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerSearch} />
+                        <Stack.Screen name="OwnerServices" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={OwnerServices} />
                         <Stack.Screen name="Auth" options={{ gestureEnabled: false }} component={Auth} />
                         <Stack.Screen name="Signup" options={{ gestureEnabled: false }} component={Signup} />
+                        <Stack.Screen name="ProviderHome" options={{ gestureEnabled: false }} initialParams={{ session: session }} component={ProviderHome} />
                     </Stack.Navigator>
                     <SafeAreaProvider style={{position: "absolute", width: "100%"}}>
                         <Alert type={alertProps.type} message={alertProps.message} show={alertProps.show} />
                     </SafeAreaProvider>
-                    {isLoggedIn && <ScreenNav session={session} />}
+                    {isUserHomeOwner && isLoggedIn && <OwnerScreenNav session={session} />}
                 </ThemeContext.Provider>
             </AlertContext.Provider>
         </NavigationContainer>

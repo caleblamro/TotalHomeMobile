@@ -1,7 +1,7 @@
-import { Text, View } from 'react-native';
-import { MotiView, ScrollView } from 'moti';
+import { Text } from 'react-native';
+import { MotiView } from 'moti';
 import { FadeInFromBottom } from '../../../../components/animation/Animations';
-import { FillScreen, FillWidthAndCenter, FlexRow, IconButtonStyle, TitleStyles } from '../../../styles/Styles';
+import { FillWidthAndCenter, IconButtonStyle, TitleStyles } from '../../../styles/Styles';
 import { useTheme } from '../../../hooks/Hooks';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../util/ScreenStack';
@@ -10,14 +10,14 @@ import CardContainer from '../../../../components/cards/CardContainer';
 import ModalController from '../../../../components/modal/ModalController';
 import Constants from 'expo-constants';
 import React from 'react';
-import { getSections } from './SettingsSection';
+import { getSections } from './OwnerSettingsSections';
 import BaseScreen from '../../util/BaseScreen';
 import { Ionicons } from '@expo/vector-icons';
 import Button, { ButtonType } from '../../../../components/button/Button';
 import { supabase } from '../../../api/supabase/supabase';
 
-type Props = NativeStackScreenProps<RootStackParamList, "Settings">;
-export default function Settings({ navigation, route }: Props) {
+type Props = NativeStackScreenProps<RootStackParamList, "OwnerSettings">;
+export default function OwnerSettings({ navigation, route }: Props) {
     const { session } = route.params;
     const theme = useTheme();
     const sections = getSections(theme);
